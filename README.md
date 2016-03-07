@@ -1,2 +1,2 @@
 # mw.validation
-Javascript Validations Rule
+Javascript Validations Rules

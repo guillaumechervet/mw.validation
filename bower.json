@@ -1,0 +1,23 @@
+{
+  "name": "mw.validation",
+  "homepage": "https://github.com/guillaumechervet/mw.validation",
+  "authors": [
+    "CHERVET Guillaume <guillaume.chervet@gmail.com>"
+  ],
+  "description": "Javascript Validation Rules",
+  "main": "mw.validation.js",
+  "moduleType": [],
+  "keywords": [
+    "javascript",
+    "validation",
+    "rules"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
