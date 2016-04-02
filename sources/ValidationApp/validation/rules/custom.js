@@ -17,7 +17,7 @@
             if(typeof(result) == "object"){
                 return result;
             } else{
-                success = success;
+                success = result;
             }            
         } else if (params) {
             success = params.validateView == true;
@@ -38,7 +38,7 @@
             if(typeof(result) == "object"){
                 return result;
             } else{
-                success = success;
+                success = result;
             }      
         } else if (params) {
             success = params.validateModel == true;
