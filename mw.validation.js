@@ -2036,7 +2036,12 @@ define('ValidationApp/validation/rules/custom',['ValidationApp/validation/i18n/t
         var success = true;
 
         if (params && params.validateView && typeof (params.validateView) == "function") {
-            success = params.validateView(value);
+             var result = params.validateView(value);
+            if(typeof(result) == "object"){
+                return result;
+            } else{
+                success = result;
+            }            
         } else if (params) {
             success = params.validateView == true;
         }
@@ -2052,9 +2057,14 @@ define('ValidationApp/validation/rules/custom',['ValidationApp/validation/i18n/t
         var success = true;
 
         if (params && params.validateModel && typeof (params.validateModel) == "function") {
-            success = params.validateModel(value);
+              var result = params.validateModel(value);
+            if(typeof(result) == "object"){
+                return result;
+            } else{
+                success = result;
+            }      
         } else if (params) {
-            success = params.validateView == true;
+            success = params.validateModel == true;
         }
 
         return {
