@@ -2266,7 +2266,7 @@ define('ValidationApp/validation/validateRules',['ValidationApp/validation/rules
                                     }
                                 }
 
-                            } else if(ruleName3 == "validateView" || ruleName3 == "validateObject") {
+                            } else if(ruleName3 == "validateView" || ruleName3 == "validateObject" || ruleName3 == "validateModel") {
                                 newParams[ruleName3] = ruleValue3;
                             }
                             else {
