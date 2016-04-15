@@ -1,8 +1,6 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
-
+define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
     var defaultMessage = 'Veuillez saisir un n° de téléphone valide.';
     var name = "phone";
-
     var dictionary = {
         "AD": /^((00 ?|\+)376 ?)?([ \-.]?\d){6}$/,
         "AL": /^((00 ?|\+)355 ?|0)?([ \-.]?\d){8}$/,
@@ -54,65 +52,50 @@
         "UA": /^((00 ?|\+)380 ?|0)?([ \-.]?\d){9}$/,
         "US": /^((00 ?|\+)1 ?|1)?([ \-.]?\d){10}$/
     };
-    
-    function getRegexForCountry (countryCode) {
-       return dictionary[countryCode];
-    };
-
+    function getRegexForCountry(countryCode) {
+        return dictionary[countryCode];
+    }
+    ;
     var validate = function (value, params) {
-
         var sucess = true;
-
         if (typeof params == 'object' && params) {
             params = params.params;
         }
-
-        /// <summary>
-        /// Validation des numéro de téléphone
-        /// Les tirets, les points et les espaces sont autorisés
-        /// </summary>
-        /// <param name="val">le numéro de téléphone</param>
-        /// <returns>True si le numéro de téléphone est valide</returns>
         if (util.isEmptyVal(value)) {
             sucess = true;
-        } else {
-
+        }
+        else {
             if (util.isEmptyVal(params)) {
                 var regex = /^(\+\s?)?(^(?!\+.*)\(\+?\d+([\s\-\.]?\d+)?\)|\d+)([\s\-\.]?(\(\d+([\s\-\.]?\d+)?\)|\d+))*(\s?(x|ext\.?)\s?\d+)?$/;
                 sucess = regex.test(value);
-            } else {
+            }
+            else {
                 var countriesConstraints = params.split(',');
                 for (var i = 0; i < countriesConstraints.length; i++) {
                     var regexCountry = getRegexForCountry(countriesConstraints[i]);
-
                     if (!regexCountry) {
                         throw "Validation phone :Ce pays n'est pas connu : " + countriesConstraints[i];
                     }
-
                     if (regexCountry.test(value)) {
                         sucess = true;
-                    } else {
+                    }
+                    else {
                         sucess = false;
                     }
                 }
             }
         }
-
         return {
             success: sucess,
             message: defaultMessage
         };
     };
-
-
     var rule = {
         name: name,
         validateView: validate,
         validateModel: validate
     };
-
     rules.add(rule);
-
     return rule;
-
 });
+//# sourceMappingURL=phone.js.map

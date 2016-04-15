@@ -1,9 +1,7 @@
-﻿
 define([], function () {
-    
     var configuration = {
         dates: {
-            dateProvider: function() {
+            dateProvider: function () {
                 var date = new Date();
                 date.setHours(0, 0, 0, 0);
                 return date;
@@ -11,14 +9,12 @@ define([], function () {
         },
         culture: {
             defaultCulture: 'fr',
-            setCulture: function(culture) {
+            setCulture: function (culture) {
                 Globalize.culture(culture);
             }
         }
     };
-
     configuration.culture.setCulture(configuration.culture.defaultCulture);
-
     return configuration;
 });
-
+//# sourceMappingURL=configuration.js.map

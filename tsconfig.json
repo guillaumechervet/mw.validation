@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+  "noImplicitAny": false,
+  "noEmitOnError": true,
+  "removeComments": false,
+  "target": "es5",
+  "module": "commonjs",
+  "outDir": "../wwwroot/lib/app",
+  "experimentalDecorators": true,
+  "emitDecoratorMetadata": true,
+  "inlineSourceMap": true,
+  "inlineSources": true
+},
+"exclude": [
+  "node_modules",
+  "lib",
+  "bower_components",
+  "wwwroot"
+]
+}

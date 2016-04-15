@@ -1,20 +1,14 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util', 'ValidationApp/validation/rules/date'], function (textFormatter, rules, util, ruleDate) {
-
+define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util', 'ValidationApp/validation/rules/date'], function (textFormatter, rules, util, ruleDate) {
     var defaultMessageSupEqual = 'Veuillez saisir une date supérieur ou égale au {0}.';
     var defaultMessageInfEqual = 'Veuillez saisir une date inférieur ou égale au {0}.';
     var defaultMessageSup = 'Veuillez saisir une date supérieur au {0}.';
     var defaultMessageInf = 'Veuillez saisir une date inéfrieur au {0}.';
-
     var name = "dateCompare";
-
     var compare = function (date, params) {
         if (date) {
             var compareDate = params.dateToCompare;
-
-            // Copy date parts of the timestamps, discarding the time parts.
             var one = new Date(date.getFullYear(), date.getMonth(), date.getDate());
             var two = new Date(compareDate.getFullYear(), compareDate.getMonth(), compareDate.getDate());
-
             switch (params.compare) {
                 case ">=":
                     return two.getTime() <= one.getTime();
@@ -28,11 +22,8 @@
         }
         return false;
     };
-
     var getMessage = function (params) {
-
         var defaultMessage = null;
-
         switch (params.compare) {
             case ">=":
                 defaultMessage = defaultMessageSupEqual;
@@ -47,73 +38,55 @@
                 defaultMessage = defaultMessageInfEqual;
                 break;
         }
-
         return textFormatter.format(defaultMessage, util.formatDate(params.dateToCompare));
     };
-
     var updateParams = function (params) {
-
-        // Si aucun paramètre, on prend la date du jour
         var dateToCompare = new Date();
         if (!params) {
             params = { dateToCompare: dateToCompare, compare: "inferiorOrEqual" };
-        } else if (!params.dateToCompare) {
+        }
+        else if (!params.dateToCompare) {
             params.dateToCompare = dateToCompare;
         }
         else if (!params.compare) {
             params.compare = "inferiorOrEqual";
         }
-
         return params;
     };
-
     var validateView = function (value, params) {
-
-        // On test la validitée de la date
         var result = ruleDate.validateView(value);
-
         if (!result.success) {
             return result;
         }
-
-        // On initialise les paramètres
         params = updateParams(params);
-
-        // Réalise le test
         var sucess = false;
         var date = null;
         if (util.isEmptyVal(value)) {
             sucess = true;
-        } else if (util.isDate(value)) {
+        }
+        else if (util.isDate(value)) {
             sucess = compare(value, params);
         }
         else {
             date = util.toDate(value);
             sucess = compare(date, params);
         }
-
         return {
             success: sucess,
             message: getMessage(params)
         };
     };
-
     var validateModel = function (value, params) {
-
-        // On test la validitée de la date
         var result = ruleDate.validateModel(value);
-
         if (!result.success) {
             return result;
         }
-
-        // On initialise les paramètres
         params = updateParams(params);
-
         var sucess = false;
         if (util.isEmptyVal(value)) {
             sucess = true;
-        } else {
+        }
+        else {
             sucess = compare(value, params);
         }
         return {
@@ -121,7 +94,6 @@
             message: getMessage(params)
         };
     };
-
     var rule = {
         name: name,
         priority: 600,
@@ -130,9 +102,7 @@
         parser: ruleDate.parser,
         formatter: ruleDate.formatter
     };
-
     rules.add(rule);
-
     return rule;
-
 });
+//# sourceMappingURL=dateCompare.js.map

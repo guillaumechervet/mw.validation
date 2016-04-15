@@ -1,12 +1,10 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
-
+define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
     var defaultMessage = 'Veuillez saisir un code postal valide.';
     var name = "zipCode";
-
-     function getRegexForCountry(countryCode) {
+    function getRegexForCountry(countryCode) {
         return validation.zipCode.dictionary[countryCode];
-    };
-
+    }
+    ;
     var dictionary = {
         "AD": /^AD[0-9]{3}$/,
         "AL": /^[0-9]{4}$/,
@@ -57,41 +55,30 @@
         "TR": /^[0-9]{5}$/,
         "UA": /^[0-9]{5}$/,
         "US": /^[0-9]{5}$/
-    }
-
+    };
     var validate = function (value, params) {
-
         var success = true;
-
-        /// <summary>
-        /// Verifie si le format du code postal est correct
-        /// </summary>
-        /// <param name="val">code postal = Zip Code</param>
-        /// <returns>True si le code postal est valide, false sinon</returns>
         if (util.isEmptyVal(value)) {
             success = true;
-        } else {
-                var codePays = params || 'FR'; // TODO gérer en configuration la défault country
-                var regexp = validation.zipCode.getRegexForCountry(codePays);
-
-                if (regexp) {
-                    success = regexp.test(value);
-                }
         }
-
+        else {
+            var codePays = params || 'FR';
+            var regexp = validation.zipCode.getRegexForCountry(codePays);
+            if (regexp) {
+                success = regexp.test(value);
+            }
+        }
         return {
             success: success,
             message: defaultMessage
         };
     };
-
-
     var rule = {
         name: name,
         validateView: validate,
         validateModel: validate
     };
-
     rules.add(rule);
     return rule;
 });
+//# sourceMappingURL=zipCode.js.map

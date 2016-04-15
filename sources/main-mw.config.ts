@@ -1,0 +1,18 @@
+﻿
+//import {validation} from './ValidationApp/validation/validateRules';
+//import {objectValidation} from 'ValidationApp/validation/object/validateObject';
+
+
+define(['ValidationApp/validation/validateRules', 'ValidationApp/validation/object/validateObject'],
+   function (validation, objectValidation) {
+
+        // On ajoute des module au framework
+        // container non interne afin d'éviter les conflit 
+        //container.validation = validation;
+        // container.animation = animation;
+
+        return {
+            validation : validation,
+            objectValidation : objectValidation
+        };
+ }); 

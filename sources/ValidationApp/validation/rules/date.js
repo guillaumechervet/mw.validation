@@ -1,8 +1,6 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
-
+define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
     var defaultMessage = 'Veuillez saisir une date valide.';
     var name = "date";
-
     var formatter = function (value) {
         if (!value) {
             return "";
@@ -12,26 +10,26 @@
         }
         return "";
     };
-
     var parser = function (value) {
         if (util.isDate(value)) {
             return value;
-        } else {
+        }
+        else {
             var date = util.toDate(value);
-            // retourne la date ou null;
             if (date) {
                 return date;
-            } else {
+            }
+            else {
                 return null;
             }
         }
     };
-
     var validateView = function (value, params) {
         var sucess = false;
         if (util.isEmptyVal(value)) {
             sucess = true;
-        } else if (util.isDate(value)) {
+        }
+        else if (util.isDate(value)) {
             sucess = true;
         }
         else {
@@ -43,16 +41,16 @@
             message: textFormatter.format(defaultMessage)
         };
     };
-
     var validateModel = function (value, params) {
         var sucess = false;
         if (util.isEmptyVal(value)) {
             sucess = true;
-        } else {
-
+        }
+        else {
             if (util.isDate(value)) {
                 sucess = true;
-            } else {
+            }
+            else {
                 sucess = false;
             }
         }
@@ -61,7 +59,6 @@
             message: textFormatter.format(defaultMessage)
         };
     };
-
     var rule = {
         name: name,
         validateView: validateView,
@@ -70,9 +67,7 @@
         formatter: formatter,
         priority: 900
     };
-
     rules.add(rule);
-
     return {
         validateView: validateView,
         validateModel: validateModel,
@@ -80,3 +75,4 @@
         formatter: formatter
     };
 });
+//# sourceMappingURL=date.js.map

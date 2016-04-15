@@ -1,21 +1,18 @@
-﻿define([], function () {
-
+define([], function () {
     var format = function (format) {
         var args = Array.prototype.slice.call(arguments, 1);
         return format.replace(/{(\d+)}/g, function (match, number) {
             return typeof args[number] != 'undefined'
-        ? args[number]
-        : match
-      ;
+                ? args[number]
+                : match;
         });
     };
-
     function endWith(str, suffix) {
         return str.indexOf(suffix, str.length - suffix.length) !== -1;
     }
-
     return {
         format: format,
         endWith: endWith
     };
 });
+//# sourceMappingURL=textFormatter.js.map
