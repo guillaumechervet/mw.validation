@@ -1,8 +1,12 @@
 "use strict";
-var Rules = (function () {
-    function Rules() {
+var RulesImpl = (function () {
+    function RulesImpl() {
     }
-    Rules.prototype.getRules = function () { return this._rules; };
-    return Rules;
+    RulesImpl.prototype.getRules = function () {
+        return this._rules;
+    };
+    return RulesImpl;
 }());
+var Rules = new RulesImpl().getRules();
+exports.Rules = Rules;
 //# sourceMappingURL=test.js.map

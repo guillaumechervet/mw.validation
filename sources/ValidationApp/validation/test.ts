@@ -1,11 +1,16 @@
 
-import {IRule} from './IRule';
+import {IRule} from "./IRule";
 
-class Rules implements IRules {
-    private _rules: Array<IRule>;
-    getRules() { return this._rules; }
+class RulesImpl implements IRules {
+    private _rules: Array<any>;
+    public getRules() : Array<any> { 
+        return this._rules; 
+    }
 }
 interface IRules {
-    getRules();
+    getRules: Function;
 }
-export = new Rules();
+
+var Rules = new RulesImpl().getRules(); 
+
+export { Rules };

@@ -1,5 +1,8 @@
-define([], function () {
-    function isEmptyVal(val) {
+"use strict";
+var Util = (function () {
+    function Util() {
+    }
+    Util.prototype.isEmptyVal = function (val) {
         if (val === undefined) {
             return true;
         }
@@ -18,46 +21,44 @@ define([], function () {
         else {
             return false;
         }
-    }
-    ;
-    function isDate(val) {
+    };
+    Util.prototype.isDate = function (val) {
         return Object.prototype.toString.apply(val) === "[object Date]";
-    }
-    ;
-    function toDate(val) {
+    };
+    Util.prototype.toDate = function (val) {
         return Globalize.parseDate(val);
-    }
-    function padLeft(s, lenght, paddingChar) {
-        s = s.toString();
-        while (s.length < lenght) {
-            s = paddingChar + s;
-        }
-        return s;
-    }
-    function formatDate(date) {
+    };
+    Util.prototype.formatDate = function (date) {
         var d = date.getDate();
         var m = date.getMonth() + 1;
         var y = date.getFullYear();
         return '' + (d <= 9 ? '0' + d : d) + '/' + (m <= 9 ? '0' + m : m) + '/' + y;
-    }
-    function sortHashTable(hashTable, key, removeKey) {
+    };
+    Util.prototype.sortHashTable = function (hashTable, key, removeKey) {
+        if (removeKey === void 0) { removeKey = false; }
         hashTable = (hashTable instanceof Array ? hashTable : []);
         var newHashTable = hashTable.sort(function (a, b) {
-            return (typeof (a[key]) === 'number' ? a[key] - b[key] : a[key] > b[key]);
+            if (typeof (a[key]) === "number") {
+                return a[key] - b[key];
+            }
+            else {
+                if (a[key] > b[key]) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            }
+            ;
         });
         if (removeKey) {
-            for (i in newHashTable) {
+            for (var i in newHashTable) {
                 delete newHashTable[i][key];
             }
         }
         return newHashTable;
-    }
-    return {
-        isEmptyVal: isEmptyVal,
-        isDate: isDate,
-        toDate: toDate,
-        formatDate: formatDate,
-        sortHashTable: sortHashTable
     };
-});
+    return Util;
+}());
+exports.Util = Util;
 //# sourceMappingURL=util.js.map

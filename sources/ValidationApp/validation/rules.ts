@@ -1,4 +1,6 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter'], function (textFormatter) {
+﻿//define(['ValidationApp/validation/i18n/textFormatter'], function (textFormatter) {
+
+import * as textFormatter from "./i18n/textFormatter";
 
     var rules = [];
 
@@ -129,7 +131,7 @@
     function getRule(name) {
 
         for (var j = 0; j < rules.length; j++) {
-            if (rules[j].name == name) {
+            if (rules[j].name === name) {
                 return rules[j];
             }
         }
@@ -137,9 +139,8 @@
         return null;
     }
 
-    return {
-        add: add,
-        rules: rules,
-        getRule: getRule
+    export {
+         add,
+         rules,
+         getRule
     };
-});
