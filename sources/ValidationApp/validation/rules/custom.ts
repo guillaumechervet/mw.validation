@@ -1,4 +1,6 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
+﻿///define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
+
+import * as rules from "../rules";
 
     var defaultMessage = 'Une erreur de validation est survenue.';
     var name = "custom";
@@ -59,7 +61,3 @@
     };
 
     rules.add(rule);
-
-    return rule;
-
-});

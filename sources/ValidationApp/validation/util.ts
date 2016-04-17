@@ -19,7 +19,7 @@
  
 
 
-export class Util  {
+class Util  {
     public isEmptyVal(val:any) :Boolean { 
          if (val === undefined) {
             return true;
@@ -87,9 +87,9 @@ export class Util  {
         }
 }
 
+var util = new Util();
 
-
-//export = new Util();
+export {util};
 
 
 

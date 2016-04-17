@@ -1,5 +1,5 @@
 ﻿
-define([], function () {
+
     
     var configuration = {
         dates: {
@@ -19,6 +19,5 @@ define([], function () {
 
     configuration.culture.setCulture(configuration.culture.defaultCulture);
 
-    return configuration;
-});
+    export {configuration};
 

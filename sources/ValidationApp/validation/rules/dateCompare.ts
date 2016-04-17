@@ -1,4 +1,9 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util', 'ValidationApp/validation/rules/date'], function (textFormatter, rules, util, ruleDate) {
+﻿//define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util', 'ValidationApp/validation/rules/date'], function (textFormatter, rules, util, ruleDate) {
+
+import * as rules from "../rules";
+import {util} from "../util";
+import * as textFormatter from "../i18n/textFormatter";
+import * as ruleDate from "./date";
 
     var defaultMessageSupEqual = 'Veuillez saisir une date supérieur ou égale au {0}.';
     var defaultMessageInfEqual = 'Veuillez saisir une date inférieur ou égale au {0}.';
@@ -133,6 +138,6 @@
 
     rules.add(rule);
 
-    return rule;
+  //  return rule;
 
-});
+//});
