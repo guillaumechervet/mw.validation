@@ -26,7 +26,7 @@ var Util = (function () {
         return Object.prototype.toString.apply(val) === "[object Date]";
     };
     Util.prototype.toDate = function (val) {
-        return Globalize.parseDate(val);
+        return new Date();
     };
     Util.prototype.formatDate = function (date) {
         var d = date.getDate();

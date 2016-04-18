@@ -29,7 +29,7 @@ class Util  {
 
         public toDate(val:any): Date{
              /* Convertir un string de type dd/mm/yyyy en type Date */
-        return Globalize.parseDate(val);
+              return new Date();//Globalize.parseDate(val);
         }
         public formatDate(date: Date): string {
             

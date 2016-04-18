@@ -10,7 +10,6 @@ var configuration = {
     culture: {
         defaultCulture: 'fr',
         setCulture: function (culture) {
-            Globalize.culture(culture);
         }
     }
 };

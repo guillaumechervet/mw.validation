@@ -12,7 +12,7 @@
         culture: {
             defaultCulture: 'fr',
             setCulture: function(culture) {
-                Globalize.culture(culture);
+                //Globalize.culture(culture);
             }
         }
     };

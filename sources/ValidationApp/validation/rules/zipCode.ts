@@ -5,11 +5,7 @@ import * as textFormatter from "../i18n/textFormatter";
     var defaultMessage = 'Veuillez saisir un code postal valide.';
     var name = "zipCode";
 
-     function getRegexForCountry(countryCode) {
-        return validation.zipCode.dictionary[countryCode];
-    };
-
-    var dictionary = {
+ var dictionary = {
         "AD": /^AD[0-9]{3}$/,
         "AL": /^[0-9]{4}$/,
         "AT": /^[0-9]{4}$/,
@@ -59,9 +55,14 @@ import * as textFormatter from "../i18n/textFormatter";
         "TR": /^[0-9]{5}$/,
         "UA": /^[0-9]{5}$/,
         "US": /^[0-9]{5}$/
-    }
+    };
+     function getRegexForCountry(countryCode) {
+        return dictionary[countryCode];
+    };
 
-    var validate = function (value, params) {
+   
+
+    var validate = function (value, params: any) {
 
         var success = true;
 
@@ -74,7 +75,7 @@ import * as textFormatter from "../i18n/textFormatter";
             success = true;
         } else {
                 var codePays = params || 'FR'; // TODO gérer en configuration la défault country
-                var regexp = validation.zipCode.getRegexForCountry(codePays);
+                var regexp = getRegexForCountry(codePays);
 
                 if (regexp) {
                     success = regexp.test(value);

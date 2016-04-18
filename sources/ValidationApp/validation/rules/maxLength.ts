@@ -5,7 +5,7 @@ import * as textFormatter from "../i18n/textFormatter";
     var defaultMessage = 'Veuillez saisir au plus {0} caractère(s).';
     var name = "maxLength";
 
-    var validate = function (value, params) {
+    var validateView = function (value, params) {
 
         /// <summary>
         /// Verifie si la longueur de la chaine de caractère est inférieure à la valeur définie
@@ -28,7 +28,6 @@ import * as textFormatter from "../i18n/textFormatter";
 
                     maxLength = params;
                 }
-                
             }
 
             success = value.toString().length <= maxLength;
@@ -43,8 +42,12 @@ import * as textFormatter from "../i18n/textFormatter";
 
     var rule = {
         name: name,
-        validateView: validate,
-        validateModel: validate
+        validateView: validateView,
+        validateModel: validateView
     };
 
     rules.add(rule);
+    
+    export{
+        validateView
+    }

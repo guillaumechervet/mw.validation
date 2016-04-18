@@ -4,7 +4,7 @@ var util_1 = require("../util");
 var textFormatter = require("../i18n/textFormatter");
 var defaultMessage = 'Veuillez saisir au plus {0} caractère(s).';
 var name = "maxLength";
-var validate = function (value, params) {
+var validateView = function (value, params) {
     var maxLength = 0;
     var success = false;
     if (util_1.util.isEmptyVal(value)) {
@@ -29,10 +29,11 @@ var validate = function (value, params) {
         message: textFormatter.format(defaultMessage, maxLength)
     };
 };
+exports.validateView = validateView;
 var rule = {
     name: name,
-    validateView: validate,
-    validateModel: validate
+    validateView: validateView,
+    validateModel: validateView
 };
 rules.add(rule);
 //# sourceMappingURL=maxLength.js.map

@@ -3,10 +3,6 @@ var rules = require("../rules");
 var util_1 = require("../util");
 var defaultMessage = 'Veuillez saisir un code postal valide.';
 var name = "zipCode";
-function getRegexForCountry(countryCode) {
-    return validation.zipCode.dictionary[countryCode];
-}
-;
 var dictionary = {
     "AD": /^AD[0-9]{3}$/,
     "AL": /^[0-9]{4}$/,
@@ -58,6 +54,10 @@ var dictionary = {
     "UA": /^[0-9]{5}$/,
     "US": /^[0-9]{5}$/
 };
+function getRegexForCountry(countryCode) {
+    return dictionary[countryCode];
+}
+;
 var validate = function (value, params) {
     var success = true;
     if (util_1.util.isEmptyVal(value)) {
@@ -65,7 +65,7 @@ var validate = function (value, params) {
     }
     else {
         var codePays = params || 'FR';
-        var regexp = validation.zipCode.getRegexForCountry(codePays);
+        var regexp = getRegexForCountry(codePays);
         if (regexp) {
             success = regexp.test(value);
         }
