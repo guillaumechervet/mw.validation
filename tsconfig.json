@@ -8,9 +8,9 @@
   //"outDir": "../wwwroot/lib/app",
   "experimentalDecorators": true,
   "emitDecoratorMetadata": true,
-  "inlineSourceMap": true,
+  "inlineSourceMap": false,
   "inlineSources": false,
-  "outFile": "mw.validationtest.js"
+  "outFile": "validationtest.js"
 },
 "exclude": [
   "node_modules",
