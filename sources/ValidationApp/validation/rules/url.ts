@@ -1,5 +1,5 @@
-﻿
-define(['ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (rules, util) {
+﻿import * as rules from "../rules";
+import {util} from "../util";
 
     var defaultMessage = 'Veuillez saisir une url valide.';
     var name = "url";
@@ -39,8 +39,3 @@ define(['ValidationApp/validation/rules', 'ValidationApp/validation/util'], func
     };
 
     rules.add(rule);
-
-    return rule;
-
-});
- 

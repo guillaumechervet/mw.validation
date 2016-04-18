@@ -4,12 +4,12 @@
   "noEmitOnError": true,
   "removeComments": false,
   "target": "es5",
- // "module": "system",
+  "module": "system",
   //"outDir": "../wwwroot/lib/app",
   "experimentalDecorators": true,
   "emitDecoratorMetadata": true,
   "inlineSourceMap": true,
-  "inlineSources": true
+  "inlineSources": false
 },
 "exclude": [
   "node_modules",

@@ -81,6 +81,6 @@ module.exports = function (grunt) {
     });
 
 
-    grunt.registerTask('default', ['copy', 'concat', 'uglify', 'cssmin', 'cache_control', 'ts', 'watch']);
+    grunt.registerTask('default', [ 'concat', 'ts']);
     grunt.registerTask('production', ['bower', 'tslint', 'copy', 'concat', 'uglify', 'cssmin', 'cache_control', 'ts']);
 };

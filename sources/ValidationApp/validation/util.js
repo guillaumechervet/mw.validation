@@ -60,5 +60,6 @@ var Util = (function () {
     };
     return Util;
 }());
-exports.Util = Util;
+var util = new Util();
+exports.util = util;
 //# sourceMappingURL=util.js.map

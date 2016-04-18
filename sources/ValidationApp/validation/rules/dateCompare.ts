@@ -138,6 +138,7 @@ import * as ruleDate from "./date";
 
     rules.add(rule);
 
-  //  return rule;
-
-//});
+ export{
+     validateView,
+     validateModel
+    };

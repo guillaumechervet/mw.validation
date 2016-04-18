@@ -1,9 +1,13 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util', 'ValidationApp/validation/rules/maxLength', 'ValidationApp/validation/rules/pattern'], function (textFormatter, rules, util, maxLength, pattern) {
+﻿
+import * as rules from "../rules";
+import {util} from "../util";
+import * as pattern from "./pattern";
+import * as maxLength from "./maxLength";
 
     var defaultMessage = 'Le nom est invalide.';
     var name = "firstname";
 
-    var validate = function (value, params) {
+    var validateView = function (value, params) {
 
         var success = true;
 
@@ -28,12 +32,12 @@
 
     var rule = {
         name: name,
-        validateView: validate,
-        validateModel: validate
+        validateView: validateView,
+        validateModel: validateView
     };
 
     rules.add(rule);
-
-    return rule;
-
-});
+    
+    export {
+        validateView
+    };

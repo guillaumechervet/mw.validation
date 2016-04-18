@@ -1,24 +1,4 @@
 ﻿
-//define([], function () {
-
-
-   
-   
-
-    /* Ajouter une séquence de caractères à un string */
-    /* function padLeft(s, lenght, paddingChar) {
-            s = s.toString();
-            while (s.length < lenght) {
-                s = paddingChar + s;
-            }
-
-            return s;
-        }*/
-
-
- 
-
-
 class Util  {
     public isEmptyVal(val:any) :Boolean { 
          if (val === undefined) {
@@ -46,7 +26,6 @@ class Util  {
     public isDate(val:any): boolean{
         return Object.prototype.toString.apply(val) === "[object Date]";
     } 
-
 
         public toDate(val:any): Date{
              /* Convertir un string de type dd/mm/yyyy en type Date */
@@ -90,10 +69,6 @@ class Util  {
 var util = new Util();
 
 export {util};
-
-
-
-//});
 
 
 

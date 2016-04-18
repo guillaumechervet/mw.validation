@@ -1,11 +1,11 @@
 "use strict";
-var test_ts_1 = require("../test.ts");
+var rules = require("../rules");
 var util_1 = require("../util");
 var defaultMessage = 'Veuillez saisir un BIC valide.';
 var name = "bic";
 var validate = function (value, params) {
     var success = false;
-    if ((new util_1.Util()).isEmptyVal(value)) {
+    if (util_1.util.isEmptyVal(value)) {
         success = true;
     }
     else {
@@ -22,5 +22,5 @@ var rule = {
     validateView: validate,
     validateModel: validate
 };
-test_ts_1.Rules.add(rule);
+rules.add(rule);
 //# sourceMappingURL=bic.js.map

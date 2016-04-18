@@ -1,4 +1,8 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/rules/dateCompare'], function (textFormatter, rules, dateCompare) {
+﻿import * as rules from "../rules";
+import {util} from "../util";
+import * as textFormatter from "../i18n/textFormatter";
+import * as dateCompare from "./dateCompare";
+import * as date from "./date";
 
     var name = "pastDate";
 
@@ -23,12 +27,8 @@
         priority: 600,
         validateView: validateView,
         validateModel: validateModel,
-        parser: dateCompare.parser,
-        formatter: dateCompare.formatter
+        parser: date.parser,
+        formatter: date.formatter
     };
 
     rules.add(rule);
-
-    return rule;
-
-});

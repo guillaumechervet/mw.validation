@@ -1,4 +1,6 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/rules/digit'], function (textFormatter, rules, digit) {
+﻿//define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/rules/digit'], function (textFormatter, rules, digit) {
+import * as rules from "../rules";
+import * as digit from "./digit";
 
     var name = "digits";
 
@@ -13,6 +15,6 @@
 
     rules.add(rule);
 
-    return rule;
+  //  return rule;
 
-});
+//});

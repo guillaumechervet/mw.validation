@@ -1,4 +1,6 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
+﻿import * as rules from "../rules";
+import {util} from "../util";
+import * as pattern from "./pattern";
 
     var defaultMessage = 'Veuillez saisir un IBAN valide.';
     var name = "iban";
@@ -70,7 +72,3 @@
     };
 
     rules.add(rule);
-
-    return rule;
-
-});

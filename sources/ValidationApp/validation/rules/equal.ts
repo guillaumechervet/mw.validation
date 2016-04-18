@@ -1,4 +1,5 @@
-﻿define(['ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (rules, util) {
+﻿import * as rules from "../rules";
+import {util} from "../util";
 
     var defaultMessage = "Les valeurs doivent être égales.";
     var name = "equal";
@@ -40,6 +41,3 @@
     };
 
     rules.add(rule);
-
-    return rule;
-});

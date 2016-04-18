@@ -1,5 +1,5 @@
-﻿
-define(['ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (rules, util) {
+﻿import * as rules from "../rules";
+import {util} from "../util";
 
     var defaultMessage = 'Veuillez saisir une adresse électronique valide.';
     var name = "email";
@@ -40,7 +40,4 @@ define(['ValidationApp/validation/rules', 'ValidationApp/validation/util'], func
 
     rules.add(rule);
 
-    return rule;
 
-});
- 

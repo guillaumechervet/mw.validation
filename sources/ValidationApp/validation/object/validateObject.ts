@@ -1,7 +1,8 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter'], function (textFormatter) {
-    
+﻿
+import * as textFormatter from "../i18n/textFormatter";
+
        // Liste toutes les fonctions d'un objet (parcour tout l'objet en recurssif)
-       function getFunctions(inputObject, functions) {
+       function getFunctions(inputObject, functions: any= undefined) {
 
            if (!functions) {
                functions = [];
@@ -56,8 +57,7 @@
         return results;
     }
 
-    return {
-        getFunctions: getFunctions,
-        getFunctionsResult:getFunctionsResult
+    export {
+        getFunctions,
+        getFunctionsResult
     };
-});

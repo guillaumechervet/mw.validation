@@ -1,33 +1,31 @@
-﻿define(['ValidationApp/validation/rules',
-        'ValidationApp/validation/util',
-        'ValidationApp/validation/i18n/textFormatter',
-        'ValidationApp/validation/configuration',
-        'ValidationApp/validation/rules/max',
-        'ValidationApp/validation/rules/required',
-        'ValidationApp/validation/rules/testAsync',
-        'ValidationApp/validation/rules/email',
-        'ValidationApp/validation/rules/url',
-        'ValidationApp/validation/rules/min',
-        'ValidationApp/validation/rules/date',
-        'ValidationApp/validation/rules/dateCompare',
-        'ValidationApp/validation/rules/pastDate',
-        'ValidationApp/validation/rules/number',
-        'ValidationApp/validation/rules/iban',
-        'ValidationApp/validation/rules/bic',
-        'ValidationApp/validation/rules/digit',
-        'ValidationApp/validation/rules/digits',
-        'ValidationApp/validation/rules/pattern',
-        'ValidationApp/validation/rules/ssn',
-        'ValidationApp/validation/rules/lastName',
-        'ValidationApp/validation/rules/firstName',
-        'ValidationApp/validation/rules/maxLength',
-        'ValidationApp/validation/rules/minLength',
-        'ValidationApp/validation/rules/zipCode',
-        'ValidationApp/validation/rules/phone',
-        'ValidationApp/validation/rules/custom',
-        'ValidationApp/validation/rules/equal'
-    ], function (rules, util, textFormatter) {
+﻿import * as rules from "./rules";
+import {util} from "./util";
+import * as textFormatter from "./i18n/textFormatter";
 
+ import * as configuration from'./configuration';
+  import * as max from      './rules/max';
+    import * as ruleRequired from    './rules/required';
+   import * as email from     './rules/email';
+    import * as url from    './rules/url';
+    import * as min from    './rules/min';
+    import * as date from    './rules/date';
+    import * as dateCompare from    './rules/dateCompare';
+ import * as pastDate from       './rules/pastDate';
+   import * as number from     './rules/number';
+   import * as ruleDibanate from     './rules/iban';
+  import * as bic from      './rules/bic';
+   import * as digit from     './rules/digit';
+    import * as digits from    './rules/digits';
+    import * as pattern from    './rules/pattern';
+  import * as ssn from      './rules/ssn';
+  import * as lastName from      './rules/lastName';
+   import * as firstName from     './rules/firstName';
+   import * as maxLength from     './rules/maxLength';
+import * as minLength from './rules/minLength';
+   import * as zipCode from     './rules/zipCode';
+  import * as phone from      './rules/phone';
+   import * as custom from     './rules/custom';
+   import * as equal from     './rules/equal';
 
         function isAddRule(ruleName, validateMethodName) {
 
@@ -215,22 +213,14 @@
                 validationResult.name = rule.name;
             } else {
 
-                if (textFormatter.endWith(validateMethodName, 'Async')) {
-                    validationResult = Q.when({
-                        success: true,
-                        name: rule.name,
-                        parser: rule.parser,
-                        formatter: rule.formatter
-                    });
-                } else {
                     validationResult = {
                         success: true,
                         name: rule.name,
                         parser: rule.parser,
                         formatter: rule.formatter
                     };
-                }
-            }
+              }
+            
 
             // Surcharge le message si présent dans les paramètre
             if (ruleParams.params && ruleParams.params.message) {
@@ -274,13 +264,13 @@
         function validateModelAsync(value, ruleDefinition) {
             return validate(value, ruleDefinition, "validateModelAsync");
         }
+        
+        var add =rules.add;
+        
 
-        return {
-            add: rules.add,
-            validateView: validateView,
-            validateViewAsync: validateViewAsync,
-            validateModel: validateModel,
-            validateModelAsync: validateModelAsync,
-            validateDependencies: validateDependencies
+        export {
+            add,
+            validateView,
+             validateModel,
+            validateDependencies
         };
-    });

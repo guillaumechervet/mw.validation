@@ -1,4 +1,5 @@
-﻿define(['ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (rules, util) {
+﻿import * as rules from "../rules";
+import {util} from "../util";
 
     var defaultMessage = "Le champ est requis.";
     var name = "required";
@@ -21,6 +22,3 @@
     };
 
     rules.add(rule);
-
-    return rule;
-});

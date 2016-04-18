@@ -1,4 +1,7 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
+﻿//define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
+import * as rules from "../rules";
+import {util} from "../util";
+
 
     var defaultMessage = 'Veuillez saisir un entier.';
     var name = "digit";
@@ -85,6 +88,14 @@
     };
 
     rules.add(rule);
+    
+      export {
+        validateView,
+        validateModel,
+        parser,
+        formatter
+    };
 
-    return rule;
-});
+
+  //  return rule;
+//});

@@ -1,4 +1,7 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util', 'ValidationApp/validation/rules/firstName'], function (textFormatter, rules, util, firstName) {
+﻿import * as rules from "../rules";
+import {util} from "../util";
+import * as textFormatter from "../i18n/textFormatter";
+import * as firstName from "./firstName";
 
     var defaultMessage = 'Le nom est invalide.';
     var name = "lastname";
@@ -14,7 +17,3 @@
     };
 
     rules.add(rule);
-
-    return rule;
-
-});

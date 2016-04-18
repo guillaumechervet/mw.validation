@@ -33,7 +33,7 @@ import * as textFormatter from "../i18n/textFormatter";
         }
     };
 
-    var validateView = function (value, params) {
+    var validateView = function (value, params:any=undefined) {
         var sucess = false;
         if (util.isEmptyVal(value)) {
             sucess = true;
@@ -50,7 +50,7 @@ import * as textFormatter from "../i18n/textFormatter";
         };
     };
 
-    var validateModel = function (value, params) {
+    var validateModel = function (value, params:any=undefined) {
         var sucess = false;
         if (util.isEmptyVal(value)) {
             sucess = true;

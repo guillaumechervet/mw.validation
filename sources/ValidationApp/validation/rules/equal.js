@@ -1,42 +1,42 @@
-define(['ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (rules, util) {
-    var defaultMessage = "Les valeurs doivent être égales.";
-    var name = "equal";
-    function validate(value, params) {
-        var success = false;
-        if (util.isEmptyVal(value)) {
+"use strict";
+var rules = require("../rules");
+var util_1 = require("../util");
+var defaultMessage = "Les valeurs doivent être égales.";
+var name = "equal";
+function validate(value, params) {
+    var success = false;
+    if (util_1.util.isEmptyVal(value)) {
+        success = true;
+    }
+    else {
+        if (value == null && params.equal == null) {
+            success = true;
+        }
+        else if (value == undefined && params.equal == undefined) {
             success = true;
         }
         else {
-            if (value == null && params.equal == null) {
+            if (value == null || value == undefined) {
                 success = true;
             }
-            else if (value == undefined && params.equal == undefined) {
+            else if (params.equal == null || params.equal == undefined) {
                 success = true;
             }
             else {
-                if (value == null || value == undefined) {
-                    success = true;
-                }
-                else if (params.equal == null || params.equal == undefined) {
-                    success = true;
-                }
-                else {
-                    success = value.toString() === params.equal.toString();
-                }
+                success = value.toString() === params.equal.toString();
             }
         }
-        return {
-            success: success,
-            message: defaultMessage
-        };
     }
-    ;
-    var rule = {
-        name: name,
-        validateView: validate,
-        validateModel: validate
+    return {
+        success: success,
+        message: defaultMessage
     };
-    rules.add(rule);
-    return rule;
-});
+}
+;
+var rule = {
+    name: name,
+    validateView: validate,
+    validateModel: validate
+};
+rules.add(rule);
 //# sourceMappingURL=equal.js.map

@@ -1,37 +1,38 @@
-define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
-    var defaultMessage = 'Veuillez saisir au moins {0} caractère(s).';
-    var name = "minLength";
-    var validate = function (value, params) {
-        var minLength = 0;
-        var success = false;
-        if (util.isEmptyVal(value)) {
-            success = true;
-        }
-        else {
-            if (params) {
-                if (typeof params === 'object' && params.maxLength) {
-                    minLength = params.maxLength;
-                }
-                else if (typeof params === 'object' && params.params) {
-                    minLength = params.params;
-                }
-                else if (typeof params === 'number') {
-                    minLength = params;
-                }
+"use strict";
+var rules = require("../rules");
+var util_1 = require("../util");
+var textFormatter = require("../i18n/textFormatter");
+var defaultMessage = 'Veuillez saisir au moins {0} caractère(s).';
+var name = "minLength";
+var validate = function (value, params) {
+    var minLength = 0;
+    var success = false;
+    if (util_1.util.isEmptyVal(value)) {
+        success = true;
+    }
+    else {
+        if (params) {
+            if (typeof params === 'object' && params.maxLength) {
+                minLength = params.maxLength;
             }
-            success = value.toString().length >= minLength;
+            else if (typeof params === 'object' && params.params) {
+                minLength = params.params;
+            }
+            else if (typeof params === 'number') {
+                minLength = params;
+            }
         }
-        return {
-            success: success,
-            message: textFormatter.format(defaultMessage, minLength)
-        };
+        success = value.toString().length >= minLength;
+    }
+    return {
+        success: success,
+        message: textFormatter.format(defaultMessage, minLength)
     };
-    var rule = {
-        name: name,
-        validateView: validate,
-        validateModel: validate
-    };
-    rules.add(rule);
-    return rule;
-});
+};
+var rule = {
+    name: name,
+    validateView: validate,
+    validateModel: validate
+};
+rules.add(rule);
 //# sourceMappingURL=minLength.js.map

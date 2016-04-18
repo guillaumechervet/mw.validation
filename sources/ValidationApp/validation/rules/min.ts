@@ -1,4 +1,6 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
+﻿import * as rules from "../rules";
+import {util} from "../util";
+import * as textFormatter from "../i18n/textFormatter";
 
     var defaultMessage = 'Veuillez saisir une valeur supérieure ou égale à {0}.';
     var name = "min";
@@ -28,7 +30,3 @@
     };
 
     rules.add(rule);
-
-    return rule;
-
-});

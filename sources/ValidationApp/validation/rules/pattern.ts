@@ -1,4 +1,7 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
+﻿import * as rules from "../rules";
+import {util} from "../util";
+import * as textFormatter from "../i18n/textFormatter";
+
 
     var defaultMessage = 'Veuillez respecter le bon format.';
     var name = "pattern";
@@ -8,7 +11,7 @@
     /// </summary>
     /// <param name="val">la valeur saisie</param>
     /// <returns>True si la valeur saisie est un entier, false sinon</returns>
-    var validateView = function (value, params) {
+    var validateView = function (value, params: any=undefined) {
 
         var success = false;
 
@@ -32,7 +35,7 @@
         };
     };
 
-    var validateModel = function (value, params) {
+    var validateModel = function (value,  params: any=undefined) {
         var success = false;
 
         /// <summary>
@@ -62,5 +65,7 @@
 
     rules.add(rule);
 
-    return rule;
-});
+export{
+    validateView,
+    validateModel
+}

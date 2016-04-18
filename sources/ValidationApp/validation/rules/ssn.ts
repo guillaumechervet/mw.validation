@@ -1,4 +1,6 @@
-﻿define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
+﻿import * as rules from "../rules";
+import {util} from "../util";
+import * as textFormatter from "../i18n/textFormatter";
 
     var defaultMessage = 'Veuillez saisir un n° de sécurité sociale valide.';
     var name = "ssn";
@@ -56,7 +58,7 @@
                 sucess = false;
             } else {
                 var modResult = ssn.value() % 97;
-                sucess = (97 - modResult) == ssn.key;
+                sucess = (97 - modResult).toString() == ssn.key;
             }
         }
 
@@ -74,7 +76,3 @@
     };
 
     rules.add(rule);
-
-    return rule;
-
-});

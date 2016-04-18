@@ -53,68 +53,10 @@ import * as textFormatter from "./i18n/textFormatter";
             };
         }
 
-        if (rule.validateViewAsync) {
-            newValidationRule.validateViewAsync = function () {
-
-                var deferred = Q.defer();
-
-                var resolveCallback = function (data) {
-                    deferred.resolve(data);
-                };
-                var rejectCallback = function (data) {
-                    deferred.reject(data);
-                };
-
-                var args = [];
-                for (var i = 0; i < arguments.length; i++) {
-                    args.push(arguments[i]);
-                }
-                args.push(resolveCallback);
-                args.push(rejectCallback);
-
-                rule.validateViewAsync.apply(rule, args);
-
-                var promise = deferred.promise;
-
-                return promise.then(function (data) {
-                    return data;
-                });
-
-            };
-        }
-
         if (rule.validateModel) {
             newValidationRule.validateModel = function () {
                 var result = rule.validateModel.apply(rule, arguments);
                 return result;
-            };
-        }
-
-        if (rule.validateModelAsync) {
-            newValidationRule.validateModelAsync = function () {
-
-                var deferred = Q.defer();
-
-                var resolveCallback = function (data) {
-                    deferred.resolve(data);
-                };
-                var rejectCallback = function (data) {
-                    deferred.reject(data);
-                };
-
-                var args = [];
-                for (var i = 0; i < arguments.length; i++) {
-                    args.push(arguments[i]);
-                }
-                args.push(resolveCallback);
-                args.push(rejectCallback);
-
-                rule.validateModelAsync.apply(rule, args);
-
-                var promise = deferred.promise;
-
-                return promise;
-
             };
         }
 
