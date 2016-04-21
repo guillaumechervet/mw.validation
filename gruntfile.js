@@ -4,11 +4,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks("grunt-bower-task");
     grunt.loadNpmTasks("grunt-contrib-concat");
+    grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks("grunt-ts");
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks("grunt-ts");
     grunt.loadNpmTasks("grunt-tslint");
  grunt.loadNpmTasks('grunt-shell');
+ 
 
     grunt.initConfig({
         ts: {
@@ -27,23 +29,15 @@ module.exports = function (grunt) {
                 src: ["sources/**/*.ts", "!node_modules/**/*.ts"]
             }
         },
-        concat: {
-            vendorjs: {
-                src: [
-                    "sources/**/*.js"
-                ],
-                dest: "build/mw.validation.js"
-            }
-        },
-        uglify: {
-            my_min_files: {
-                files: {
-                    'build/mw.validation.min.js': [
-                        "sources/**/*.js"
-                    ]
-                }
-            }
-        },
+        // Configure a mochaTest task
+		mochaTest: {
+			test: {
+				options: {
+					reporter: 'spec'
+				},
+				src: ['src/**/*.spec.js']
+			}
+		},
         bower: {
             install: {
                 options: {
@@ -55,12 +49,16 @@ module.exports = function (grunt) {
         },
         watch: {
             appFolderScripts: {
-                files: ['wwwroot/app/**/*.ts'],
-                tasks: ['ts', 'tslint']
+                files: ['sources/**/*.ts'],
+                tasks: ['ts', 'mochaTest', 'shell']
             },
-             appFolderHtml: {
-                files: ['wwwroot/app/**/*.html'],
-                tasks: ['ngtemplates']
+
+        },
+         shell: {
+            web: {
+                command: function () {
+                    return 'node generateLib';
+                }
             }
         },
      copy: {
@@ -81,6 +79,6 @@ module.exports = function (grunt) {
     });
 
 
-    grunt.registerTask('default', [ 'concat', 'ts']);
+    grunt.registerTask('default', [ 'ts', 'mochaTest', 'shell', 'watch']);
     grunt.registerTask('production', ['bower', 'tslint', 'copy', 'concat', 'uglify', 'cssmin', 'cache_control', 'ts']);
 };

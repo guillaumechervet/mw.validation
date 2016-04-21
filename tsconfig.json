@@ -5,12 +5,11 @@
   "removeComments": false,
   "target": "es5",
   "module": "amd",
-  //"outDir": "../wwwroot/lib/app",
   "experimentalDecorators": true,
   "emitDecoratorMetadata": true,
   "inlineSourceMap": false,
   "inlineSources": false,
-  "outFile": "validationtest.js"
+  "outFile": "build/validation.js"
 },
 "exclude": [
   "node_modules",

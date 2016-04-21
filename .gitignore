@@ -252,3 +252,9 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+
+
+
+# Project
+src/*.js
+src/*.map
