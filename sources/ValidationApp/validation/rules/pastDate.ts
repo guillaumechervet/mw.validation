@@ -10,7 +10,7 @@ import * as date from "./date";
 
     var validateView = function (value, params) {
 
-       var result = dateCompare.validateView(value, { 'dateCompare': { compare: "<=" } });
+       var result = dateCompare.rule.validateView(value, { 'dateCompare': { compare: "<=" } });
 
         result.message = "La date doit être inférieure ou égale à la date du jour.";
 
@@ -19,7 +19,7 @@ import * as date from "./date";
 
     var validateModel = function (value, params) {
 
-        return dateCompare.validateModel(value, { 'dateCompare': { compare: "<=" } });
+        return dateCompare.rule.validateModel(value, { 'dateCompare': { compare: "<=" } });
     };
 
     var rule = {
@@ -27,8 +27,8 @@ import * as date from "./date";
         priority: 600,
         validateView: validateView,
         validateModel: validateModel,
-        parser: date.parser,
-        formatter: date.formatter
+        parser: date.rule.parser,
+        formatter: date.rule.formatter
     };
 
-    rules.add(rule);
+export {rule};

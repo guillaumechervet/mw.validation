@@ -58,7 +58,7 @@ var updateParams = function (params) {
     return params;
 };
 var validateView = function (value, params) {
-    var result = ruleDate.validateView(value);
+    var result = ruleDate.rule.validateView(value);
     if (!result.success) {
         return result;
     }
@@ -80,9 +80,8 @@ var validateView = function (value, params) {
         message: getMessage(params)
     };
 };
-exports.validateView = validateView;
 var validateModel = function (value, params) {
-    var result = ruleDate.validateModel(value);
+    var result = ruleDate.rule.validateModel(value);
     if (!result.success) {
         return result;
     }
@@ -99,14 +98,14 @@ var validateModel = function (value, params) {
         message: getMessage(params)
     };
 };
-exports.validateModel = validateModel;
 var rule = {
     name: name,
     priority: 600,
     validateView: validateView,
     validateModel: validateModel,
-    parser: ruleDate.parser,
-    formatter: ruleDate.formatter
+    parser: ruleDate.rule.parser,
+    formatter: ruleDate.rule.formatter
 };
+exports.rule = rule;
 rules.add(rule);
 //# sourceMappingURL=dateCompare.js.map

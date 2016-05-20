@@ -10,11 +10,11 @@ var validateView = function (value, params) {
     if (util_1.util.isEmptyVal(value)) {
         success = true;
     }
-    var resultMaxLength = maxLength.validateView(value, 50);
+    var resultMaxLength = maxLength.rule.validateView(value, 50);
     if (!resultMaxLength.success) {
         return resultMaxLength;
     }
-    var resultPattern = pattern.validateView(value, /^[a-zâãäåæçèéêëìíîïðñòóôõøùúûüýþÿiA-Z -]*$/);
+    var resultPattern = pattern.rule.validateView(value, /^[a-zâãäåæçèéêëìíîïðñòóôõøùúûüýþÿiA-Z -]*$/);
     if (!resultPattern.success) {
         success = false;
     }
@@ -23,11 +23,11 @@ var validateView = function (value, params) {
         message: defaultMessage
     };
 };
-exports.validateView = validateView;
 var rule = {
     name: name,
     validateView: validateView,
     validateModel: validateView
 };
+exports.rule = rule;
 rules.add(rule);
 //# sourceMappingURL=firstName.js.map

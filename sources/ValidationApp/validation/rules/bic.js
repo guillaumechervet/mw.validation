@@ -1,5 +1,4 @@
 "use strict";
-var rules = require("../rules");
 var util_1 = require("../util");
 var defaultMessage = 'Veuillez saisir un BIC valide.';
 var name = "bic";
@@ -22,5 +21,5 @@ var rule = {
     validateView: validate,
     validateModel: validate
 };
-rules.add(rule);
+exports.rule = rule;
 //# sourceMappingURL=bic.js.map

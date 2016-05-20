@@ -1,5 +1,4 @@
 "use strict";
-var rules = require("../rules");
 var util_1 = require("../util");
 var textFormatter = require("../i18n/textFormatter");
 var defaultMessage = 'Veuillez saisir au moins {0} caractère(s).';
@@ -34,5 +33,5 @@ var rule = {
     validateView: validate,
     validateModel: validate
 };
-rules.add(rule);
+exports.rule = rule;
 //# sourceMappingURL=minLength.js.map

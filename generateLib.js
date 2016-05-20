@@ -2,20 +2,19 @@
 var fs = require('fs');
 
 //load file "./build/validation.js"
-var api = '';
+var api = fs.readFileSync('./build/validation.js').toString();
 
 //load template "template.tpl"
-var template = '';
+var template = fs.readFileSync('./template.tpl').toString();
 
 // load node_modules/almond/almond.js
-var almond = '';
+var almond = fs.readFileSync('./node_modules/almond/almond.js');
 
-template = template.replace('$apiName$','mw-validation');
+template = template.replace('$apiName$','"myApi"');
 
 template = template.replace('$almond$',almond);
 
 template = template.replace('$api$',api);
 
 //Save final api
-
-console.log(template);
+fs.writeFileSync('./build/mw-validation.js', template);

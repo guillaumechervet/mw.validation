@@ -29,11 +29,11 @@ var validateView = function (value, params) {
         message: textFormatter.format(defaultMessage, maxLength)
     };
 };
-exports.validateView = validateView;
 var rule = {
     name: name,
     validateView: validateView,
     validateModel: validateView
 };
+exports.rule = rule;
 rules.add(rule);
 //# sourceMappingURL=maxLength.js.map

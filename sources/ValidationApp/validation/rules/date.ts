@@ -77,11 +77,4 @@ import * as textFormatter from "../i18n/textFormatter";
         priority: 900
     };
 
-    rules.add(rule);
-
-    export {
-        validateView,
-        validateModel,
-        parser,
-        formatter
-    };
+  export {rule};

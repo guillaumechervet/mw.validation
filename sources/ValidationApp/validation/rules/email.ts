@@ -37,7 +37,5 @@ import {util} from "../util";
         validateView: validate,
         validateModel: validate
     };
-
-    rules.add(rule);
-
+export {rule};
 

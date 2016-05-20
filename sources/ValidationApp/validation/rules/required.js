@@ -1,5 +1,4 @@
 "use strict";
-var rules = require("../rules");
 var util_1 = require("../util");
 var defaultMessage = "Le champ est requis.";
 var name = "required";
@@ -17,5 +16,5 @@ var rule = {
     validateModel: validate,
     priority: 1000
 };
-rules.add(rule);
+exports.rule = rule;
 //# sourceMappingURL=required.js.map

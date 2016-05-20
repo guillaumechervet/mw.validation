@@ -75,4 +75,4 @@ import * as textFormatter from "../i18n/textFormatter";
         validateModel: validate
     };
 
-    rules.add(rule);
+export {rule};

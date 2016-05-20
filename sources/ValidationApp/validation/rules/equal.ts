@@ -40,4 +40,4 @@ import {util} from "../util";
         validateModel: validate
     };
 
-    rules.add(rule);
+export {rule};

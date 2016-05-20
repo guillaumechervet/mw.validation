@@ -1,5 +1,4 @@
 "use strict";
-var rules = require("../rules");
 var util_1 = require("../util");
 var defaultMessage = "Les valeurs doivent être égales.";
 var name = "equal";
@@ -38,5 +37,5 @@ var rule = {
     validateView: validate,
     validateModel: validate
 };
-rules.add(rule);
+exports.rule = rule;
 //# sourceMappingURL=equal.js.map

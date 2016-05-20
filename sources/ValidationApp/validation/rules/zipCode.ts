@@ -94,5 +94,5 @@ import * as textFormatter from "../i18n/textFormatter";
         validateView: validate,
         validateModel: validate
     };
-
-    rules.add(rule);
+    
+export {rule};

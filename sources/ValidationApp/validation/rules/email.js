@@ -1,5 +1,4 @@
 "use strict";
-var rules = require("../rules");
 var util_1 = require("../util");
 var defaultMessage = 'Veuillez saisir une adresse électronique valide.';
 var name = "email";
@@ -29,5 +28,5 @@ var rule = {
     validateView: validate,
     validateModel: validate
 };
-rules.add(rule);
+exports.rule = rule;
 //# sourceMappingURL=email.js.map

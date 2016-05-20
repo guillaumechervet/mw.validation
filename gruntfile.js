@@ -35,7 +35,7 @@ module.exports = function (grunt) {
 				options: {
 					reporter: 'spec'
 				},
-				src: ['src/**/*.spec.js']
+				src: ['build/**/*.spec.js']
 			}
 		},
         bower: {
@@ -50,12 +50,12 @@ module.exports = function (grunt) {
         watch: {
             appFolderScripts: {
                 files: ['sources/**/*.ts'],
-                tasks: ['ts', 'mochaTest', 'shell']
+                tasks: ['ts', 'shell']
             },
 
         },
          shell: {
-            web: {
+            lib: {
                 command: function () {
                     return 'node generateLib';
                 }
@@ -79,6 +79,6 @@ module.exports = function (grunt) {
     });
 
 
-    grunt.registerTask('default', [ 'ts', 'mochaTest', 'shell', 'watch']);
+    grunt.registerTask('default', [ 'ts', 'shell', 'watch']);
     grunt.registerTask('production', ['bower', 'tslint', 'copy', 'concat', 'uglify', 'cssmin', 'cache_control', 'ts']);
 };

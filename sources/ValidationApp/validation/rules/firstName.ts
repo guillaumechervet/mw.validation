@@ -15,11 +15,11 @@ import * as maxLength from "./maxLength";
             success = true;
         }
 
-        var resultMaxLength = maxLength.validateView(value, 50);
+        var resultMaxLength = maxLength.rule.validateView(value, 50);
         if (!resultMaxLength.success) {
             return resultMaxLength;
         }
-        var resultPattern = pattern.validateView(value, /^[a-zâãäåæçèéêëìíîïðñòóôõøùúûüýþÿiA-Z -]*$/);
+        var resultPattern = pattern.rule.validateView(value, /^[a-zâãäåæçèéêëìíîïðñòóôõøùúûüýþÿiA-Z -]*$/);
         if (!resultPattern.success) {
             success =false;
         }
@@ -38,6 +38,4 @@ import * as maxLength from "./maxLength";
 
     rules.add(rule);
     
-    export {
-        validateView
-    };
+  export {rule};

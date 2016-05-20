@@ -1,5 +1,4 @@
 "use strict";
-var rules = require("../rules");
 var util_1 = require("../util");
 var textFormatter = require("../i18n/textFormatter");
 var defaultMessage = 'Veuillez saisir une date valide.';
@@ -13,7 +12,6 @@ var formatter = function (value) {
     }
     return "";
 };
-exports.formatter = formatter;
 var parser = function (value) {
     if (util_1.util.isDate(value)) {
         return value;
@@ -28,7 +26,6 @@ var parser = function (value) {
         }
     }
 };
-exports.parser = parser;
 var validateView = function (value, params) {
     if (params === void 0) { params = undefined; }
     var sucess = false;
@@ -47,7 +44,6 @@ var validateView = function (value, params) {
         message: textFormatter.format(defaultMessage)
     };
 };
-exports.validateView = validateView;
 var validateModel = function (value, params) {
     if (params === void 0) { params = undefined; }
     var sucess = false;
@@ -67,7 +63,6 @@ var validateModel = function (value, params) {
         message: textFormatter.format(defaultMessage)
     };
 };
-exports.validateModel = validateModel;
 var rule = {
     name: name,
     validateView: validateView,
@@ -76,5 +71,5 @@ var rule = {
     formatter: formatter,
     priority: 900
 };
-rules.add(rule);
+exports.rule = rule;
 //# sourceMappingURL=date.js.map

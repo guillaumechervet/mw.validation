@@ -71,4 +71,4 @@ import * as pattern from "./pattern";
         validateModel: validate
     };
 
-    rules.add(rule);
+  export {rule};

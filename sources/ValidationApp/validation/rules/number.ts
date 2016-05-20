@@ -89,5 +89,4 @@ import * as textFormatter from "../i18n/textFormatter";
         formatter: formatter,
         priority: 500
     };
-
-    rules.add(rule);
+export {rule};

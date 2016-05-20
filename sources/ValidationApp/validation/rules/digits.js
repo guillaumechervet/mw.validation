@@ -1,14 +1,13 @@
 "use strict";
-var rules = require("../rules");
 var digit = require("./digit");
 var name = "digits";
 var rule = {
     name: name,
-    validateView: digit.validateView,
-    validateModel: digit.validateModel,
-    parser: digit.parser,
-    formatter: digit.formatter,
+    validateView: digit.rule.validateView,
+    validateModel: digit.rule.validateModel,
+    parser: digit.rule.parser,
+    formatter: digit.rule.formatter,
     priority: 500
 };
-rules.add(rule);
+exports.rule = rule;
 //# sourceMappingURL=digits.js.map

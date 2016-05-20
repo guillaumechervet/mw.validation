@@ -9,7 +9,6 @@ var formatter = function (value) {
     }
     return value.toString();
 };
-exports.formatter = formatter;
 var parser = function (value) {
     if (typeof value == "undefined") {
         return null;
@@ -30,7 +29,6 @@ var parser = function (value) {
         }
     }
 };
-exports.parser = parser;
 var validateView = function (value, params) {
     var success = false;
     var isEmpty = util_1.util.isEmptyVal(value);
@@ -46,7 +44,6 @@ var validateView = function (value, params) {
         message: defaultMessage
     };
 };
-exports.validateView = validateView;
 var validateModel = function (value, params) {
     var success = false;
     if (util_1.util.isEmptyVal(value)) {
@@ -60,7 +57,6 @@ var validateModel = function (value, params) {
         message: defaultMessage
     };
 };
-exports.validateModel = validateModel;
 var rule = {
     name: name,
     validateView: validateView,
@@ -69,5 +65,6 @@ var rule = {
     formatter: formatter,
     priority: 600
 };
+exports.rule = rule;
 rules.add(rule);
 //# sourceMappingURL=digit.js.map

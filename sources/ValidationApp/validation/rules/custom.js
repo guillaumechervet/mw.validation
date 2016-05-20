@@ -1,5 +1,4 @@
 "use strict";
-var rules = require("../rules");
 var defaultMessage = 'Une erreur de validation est survenue.';
 var name = "custom";
 var validateView = function (value, params) {
@@ -46,5 +45,5 @@ var rule = {
     validateModel: validateModel,
     priority: 50
 };
-rules.add(rule);
+exports.rule = rule;
 //# sourceMappingURL=custom.js.map

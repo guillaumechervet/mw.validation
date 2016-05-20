@@ -1,5 +1,4 @@
 "use strict";
-var rules = require("../rules");
 var util_1 = require("../util");
 var textFormatter = require("../i18n/textFormatter");
 var defaultMessage = 'Veuillez saisir un nombre.';
@@ -73,5 +72,5 @@ var rule = {
     formatter: formatter,
     priority: 500
 };
-rules.add(rule);
+exports.rule = rule;
 //# sourceMappingURL=number.js.map

@@ -1,5 +1,4 @@
 "use strict";
-var rules = require("../rules");
 var util_1 = require("../util");
 var textFormatter = require("../i18n/textFormatter");
 var defaultMessage = 'Veuillez saisir une valeur supérieure ou égale à {0}.';
@@ -23,5 +22,5 @@ var rule = {
     validateView: validate,
     validateModel: validate
 };
-rules.add(rule);
+exports.rule = rule;
 //# sourceMappingURL=min.js.map

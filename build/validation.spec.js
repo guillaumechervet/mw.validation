@@ -1,19 +1,18 @@
 'use strict'
 
-var requireHelper = require('validationtest');
+var myApi = require('./validationtest.js');
 
 var assert = require('assert');
 
 describe('Validation', function () {
     
-    describe('#getAll()', function () {
-        it('should list 4 people', function (done) {
-            personCtrl.getAll().then(function (persons) {
-                assert.equal(persons.length, 4);
-                done();
-            }).catch(function(error){
-                done(error);
-            });
+    describe('required', function () {
+        it('should be false because empty', function () {
+             var rules = {input: ['required']};
+             
+             var result = myApi.validation.validateView("toto", rules.input);
+             console.log("result  :" + result.success,  myApi.validation.validateView);
+             assert.equal(result.success,false);
         });
     });
        

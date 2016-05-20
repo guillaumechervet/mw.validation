@@ -7,7 +7,7 @@ import * as firstName from "./firstName";
     var name = "lastname";
 
     var validate = function (value, params) {
-        return firstName.validateView(value, params);
+        return firstName.rule.validateView(value, params);
     };
 
     var rule = {
@@ -15,5 +15,4 @@ import * as firstName from "./firstName";
         validateView: validate,
         validateModel: validate
     };
-
-    rules.add(rule);
+export {rule};

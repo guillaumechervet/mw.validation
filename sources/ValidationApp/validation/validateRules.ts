@@ -11,8 +11,8 @@ import * as textFormatter from "./i18n/textFormatter";
     import * as date from    './rules/date';
     import * as dateCompare from    './rules/dateCompare';
  import * as pastDate from       './rules/pastDate';
-   import * as number from     './rules/number';
-   import * as ruleDibanate from     './rules/iban';
+   import * as ruleNumber from     './rules/number';
+   import * as ruleIban from     './rules/iban';
   import * as bic from      './rules/bic';
    import * as digit from     './rules/digit';
     import * as digits from    './rules/digits';
@@ -26,6 +26,31 @@ import * as minLength from './rules/minLength';
   import * as phone from      './rules/phone';
    import * as custom from     './rules/custom';
    import * as equal from     './rules/equal';
+   
+   
+   rules.add(max.rule);
+   rules.add(ruleRequired.rule);
+   rules.add(email);
+   rules.add(url);
+rules.add(min);
+rules.add(date);
+rules.add(dateCompare);
+rules.add(pastDate);
+rules.add(ruleNumber);
+rules.add(ruleIban);
+rules.add(bic);
+rules.add(digit);
+rules.add(digits);
+rules.add(pattern);
+rules.add(ssn);
+rules.add(lastName);
+rules.add(firstName);
+rules.add(maxLength);
+rules.add(minLength);
+rules.add(zipCode);
+rules.add(phone);
+rules.add(custom);
+rules.add(equal);
 
         function isAddRule(ruleName, validateMethodName) {
 

@@ -60,4 +60,5 @@ import * as rules from "../rules";
         priority: 50
     };
 
-    rules.add(rule);
+ 
+export {rule};

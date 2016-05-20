@@ -75,7 +75,7 @@ import * as ruleDate from "./date";
     var validateView = function (value, params) {
 
         // On test la validitée de la date
-        var result = ruleDate.validateView(value);
+        var result = ruleDate.rule.validateView(value);
 
         if (!result.success) {
             return result;
@@ -106,7 +106,7 @@ import * as ruleDate from "./date";
     var validateModel = function (value, params) {
 
         // On test la validitée de la date
-        var result = ruleDate.validateModel(value);
+        var result = ruleDate.rule.validateModel(value);
 
         if (!result.success) {
             return result;
@@ -132,13 +132,10 @@ import * as ruleDate from "./date";
         priority: 600,
         validateView: validateView,
         validateModel: validateModel,
-        parser: ruleDate.parser,
-        formatter: ruleDate.formatter
+        parser: ruleDate.rule.parser,
+        formatter: ruleDate.rule.formatter
     };
 
     rules.add(rule);
 
- export{
-     validateView,
-     validateModel
-    };
+export {rule};

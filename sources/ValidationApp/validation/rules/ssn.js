@@ -1,5 +1,4 @@
 "use strict";
-var rules = require("../rules");
 var util_1 = require("../util");
 var defaultMessage = 'Veuillez saisir un n° de sécurité sociale valide.';
 var name = "ssn";
@@ -56,5 +55,5 @@ var rule = {
     validateView: validate,
     validateModel: validate
 };
-rules.add(rule);
+exports.rule = rule;
 //# sourceMappingURL=ssn.js.map

@@ -16,5 +16,8 @@
   "lib",
   "bower_components",
   "wwwroot"
-]
+],
+"files": [
+        "./sources/ValidationApp/main.ts"
+    ]
 }

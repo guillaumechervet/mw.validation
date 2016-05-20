@@ -1,0 +1,20 @@
+<!doctype html>
+<html ng-app='test' >
+    <head>
+        <meta charset="utf-8">
+        <title>Framework Validation</title>
+        <script type="text/javascript" src="mw-validation.js"></script>
+  </head>
+
+    <body>
+        
+        <script type="text/javascript">
+        
+             var rules = {input: ['required']};
+             
+             var result = myApi.validation.validateView("toto", rules.input);
+             console.log("result  :", result.success);
+            
+        </script>
+        
+  </body>

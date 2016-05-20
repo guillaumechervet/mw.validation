@@ -20,7 +20,6 @@ var validateView = function (value, params) {
         message: defaultMessage
     };
 };
-exports.validateView = validateView;
 var validateModel = function (value, params) {
     if (params === void 0) { params = undefined; }
     var success = false;
@@ -35,11 +34,11 @@ var validateModel = function (value, params) {
         message: defaultMessage
     };
 };
-exports.validateModel = validateModel;
 var rule = {
     name: name,
     validateView: validateView,
     validateModel: validateModel
 };
+exports.rule = rule;
 rules.add(rule);
 //# sourceMappingURL=pattern.js.map

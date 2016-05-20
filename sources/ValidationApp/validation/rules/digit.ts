@@ -89,13 +89,4 @@ import {util} from "../util";
 
     rules.add(rule);
     
-      export {
-        validateView,
-        validateModel,
-        parser,
-        formatter
-    };
-
-
-  //  return rule;
-//});
+ export {rule};

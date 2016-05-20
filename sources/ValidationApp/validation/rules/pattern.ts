@@ -65,7 +65,4 @@ import * as textFormatter from "../i18n/textFormatter";
 
     rules.add(rule);
 
-export{
-    validateView,
-    validateModel
-}
+export {rule};

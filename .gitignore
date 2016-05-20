@@ -3,6 +3,8 @@ node_modules
 *.xproj.user
 .vs
 **/wwwroot/lib
+sources/**/*.js
+sources/**/*.map
 */.tscache
 _ReSharper.Caches
 *.lock.json

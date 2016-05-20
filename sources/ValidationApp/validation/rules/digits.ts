@@ -6,15 +6,11 @@ import * as digit from "./digit";
 
     var rule = {
         name: name,
-        validateView: digit.validateView,
-        validateModel: digit.validateModel,
-        parser: digit.parser,
-        formatter: digit.formatter,
+        validateView: digit.rule.validateView,
+        validateModel: digit.rule.validateModel,
+        parser: digit.rule.parser,
+        formatter: digit.rule.formatter,
         priority: 500
     };
 
-    rules.add(rule);
-
-  //  return rule;
-
-//});
+export {rule};

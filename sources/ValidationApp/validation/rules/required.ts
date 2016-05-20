@@ -21,4 +21,4 @@ import {util} from "../util";
         priority: 1000
     };
 
-    rules.add(rule);
+   export {rule};
