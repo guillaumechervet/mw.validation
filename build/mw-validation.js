@@ -8,7 +8,7 @@
     } else {
         //Browser globals case. Just assign the
         //result to a property on the global.
-        root["myApi"] = factory();
+        root["mw"] = factory();
     }
 }(this, function () {
     //almond, and your modules will be inlined here
@@ -564,12 +564,8 @@ define("validation/util", ["require", "exports"], function (require, exports) {
         };
         Util.prototype.toDate = function (val) {
             /* Convertir un string de type dd/mm/yyyy en type Date */
-            // var parts =val.split('/');
-            //var date = new Date(parseInt(parts[2]),parseInt(parts[1])-1,parseInt(parts[0])); 
-            //return date;
-            var st = "26/04/2013";
             var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
-            var dt = new Date(st.replace(pattern, '$3-$2-$1'));
+            var dt = new Date(val.replace(pattern, '$3-$2-$1'));
             return dt;
         };
         Util.prototype.formatDate = function (date) {
