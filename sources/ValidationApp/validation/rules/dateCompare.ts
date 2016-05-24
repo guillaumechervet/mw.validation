@@ -136,6 +136,4 @@ import * as ruleDate from "./date";
         formatter: ruleDate.rule.formatter
     };
 
-    rules.add(rule);
-
 export {rule};

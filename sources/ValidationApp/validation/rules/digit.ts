@@ -87,6 +87,4 @@ import {util} from "../util";
         priority: 600
     };
 
-    rules.add(rule);
-    
  export {rule};

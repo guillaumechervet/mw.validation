@@ -63,6 +63,4 @@ import * as textFormatter from "../i18n/textFormatter";
         validateModel: validateModel
     };
 
-    rules.add(rule);
-
 export {rule};

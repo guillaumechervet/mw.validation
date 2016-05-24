@@ -30,27 +30,27 @@ import * as minLength from './rules/minLength';
    
    rules.add(max.rule);
    rules.add(ruleRequired.rule);
-   rules.add(email);
-   rules.add(url);
-rules.add(min);
-rules.add(date);
-rules.add(dateCompare);
-rules.add(pastDate);
-rules.add(ruleNumber);
-rules.add(ruleIban);
-rules.add(bic);
-rules.add(digit);
-rules.add(digits);
-rules.add(pattern);
-rules.add(ssn);
-rules.add(lastName);
-rules.add(firstName);
-rules.add(maxLength);
-rules.add(minLength);
-rules.add(zipCode);
-rules.add(phone);
-rules.add(custom);
-rules.add(equal);
+   rules.add(email.rule);
+   rules.add(url.rule);
+rules.add(min.rule);
+rules.add(date.rule);
+rules.add(dateCompare.rule);
+rules.add(pastDate.rule);
+rules.add(ruleNumber.rule);
+rules.add(ruleIban.rule);
+rules.add(bic.rule);
+rules.add(digit.rule);
+rules.add(digits.rule);
+rules.add(pattern.rule);
+rules.add(ssn.rule);
+rules.add(lastName.rule);
+rules.add(firstName.rule);
+rules.add(maxLength.rule);
+rules.add(minLength.rule);
+rules.add(zipCode.rule);
+rules.add(phone.rule);
+rules.add(custom.rule);
+rules.add(equal.rule);
 
         function isAddRule(ruleName, validateMethodName) {
 

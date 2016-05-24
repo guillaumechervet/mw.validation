@@ -27,9 +27,11 @@ class Util  {
         return Object.prototype.toString.apply(val) === "[object Date]";
     } 
 
-        public toDate(val:any): Date{
-             /* Convertir un string de type dd/mm/yyyy en type Date */
-              return new Date();//Globalize.parseDate(val);
+        public toDate(val:string): Date{
+            /* Convertir un string de type dd/mm/yyyy en type Date */
+            var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
+            var dt = new Date(val.replace(pattern,'$3-$2-$1'));
+            return dt;
         }
         public formatDate(date: Date): string {
             
@@ -38,7 +40,6 @@ class Util  {
             var y = date.getFullYear();
 
              return '' + (d <= 9 ? '0' + d : d) + '/' + (m<=9 ? '0' + m : m) + '/' + y;
-
         }
         public sortHashTable(hashTable: Array<any>, key: string, removeKey:boolean=false) : Array<any>{
                //  hashTable: le tableau d’objets

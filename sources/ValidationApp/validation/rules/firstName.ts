@@ -36,6 +36,4 @@ import * as maxLength from "./maxLength";
         validateModel: validateView
     };
 
-    rules.add(rule);
-    
   export {rule};

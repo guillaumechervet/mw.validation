@@ -10,11 +10,29 @@
         
         <script type="text/javascript">
         
-             var rules = {input: ['required']};
+            (function() {
+                var rules = {input: ['required']};
+                
+                var result = myApi.validation.validateView("toto", rules.input);
+                console.log("Assert : ", result[0].success);
+            })();
              
-             var result = myApi.validation.validateView("toto", rules.input);
-             console.log("result  :", result.success);
-            
+             (function() {
+                var rules = {input: [ 'date']};
+                
+                //var date = myApi.validation
+                var result = myApi.validation.validateView("31/08/1983", rules.input);
+                console.log("Assert : ", result[0].success);
+             })();
+             
+               (function() {
+                var rules = {input: [ 'digit']};
+                
+                //var date = myApi.validation
+                var result = myApi.validation.validateView("21", rules.input);
+                console.log("Assert : ", result[0].success);
+             })();
+             
         </script>
         
   </body>

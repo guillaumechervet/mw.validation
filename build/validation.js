@@ -121,7 +121,13 @@ define("validation/util", ["require", "exports"], function (require, exports) {
         };
         Util.prototype.toDate = function (val) {
             /* Convertir un string de type dd/mm/yyyy en type Date */
-            return new Date(); //Globalize.parseDate(val);
+            // var parts =val.split('/');
+            //var date = new Date(parseInt(parts[2]),parseInt(parts[1])-1,parseInt(parts[0])); 
+            //return date;
+            var st = "26/04/2013";
+            var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
+            var dt = new Date(st.replace(pattern, '$3-$2-$1'));
+            return dt;
         };
         Util.prototype.formatDate = function (date) {
             var d = date.getDate();
@@ -226,7 +232,7 @@ define("validation/rules/required", ["require", "exports", "validation/util"], f
     };
     exports.rule = rule;
 });
-define("validation/rules/email", ["require", "exports", "validation/rules", "validation/util"], function (require, exports, rules, util_3) {
+define("validation/rules/email", ["require", "exports", "validation/util"], function (require, exports, util_3) {
     "use strict";
     var defaultMessage = 'Veuillez saisir une adresse électronique valide.';
     var name = "email";
@@ -256,9 +262,9 @@ define("validation/rules/email", ["require", "exports", "validation/rules", "val
         validateView: validate,
         validateModel: validate
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
-define("validation/rules/url", ["require", "exports", "validation/rules", "validation/util"], function (require, exports, rules, util_4) {
+define("validation/rules/url", ["require", "exports", "validation/util"], function (require, exports, util_4) {
     "use strict";
     var defaultMessage = 'Veuillez saisir une url valide.';
     var name = "url";
@@ -288,9 +294,9 @@ define("validation/rules/url", ["require", "exports", "validation/rules", "valid
         validateView: validate,
         validateModel: validate
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
-define("validation/rules/min", ["require", "exports", "validation/rules", "validation/util", "validation/i18n/textFormatter"], function (require, exports, rules, util_5, textFormatter) {
+define("validation/rules/min", ["require", "exports", "validation/util", "validation/i18n/textFormatter"], function (require, exports, util_5, textFormatter) {
     "use strict";
     var defaultMessage = 'Veuillez saisir une valeur supérieure ou égale à {0}.';
     var name = "min";
@@ -313,10 +319,10 @@ define("validation/rules/min", ["require", "exports", "validation/rules", "valid
         validateView: validate,
         validateModel: validate
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
 //define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
-define("validation/rules/date", ["require", "exports", "validation/rules", "validation/util", "validation/i18n/textFormatter"], function (require, exports, rules, util_6, textFormatter) {
+define("validation/rules/date", ["require", "exports", "validation/util", "validation/i18n/textFormatter"], function (require, exports, util_6, textFormatter) {
     "use strict";
     var defaultMessage = 'Veuillez saisir une date valide.';
     var name = "date";
@@ -329,7 +335,6 @@ define("validation/rules/date", ["require", "exports", "validation/rules", "vali
         }
         return "";
     };
-    exports.formatter = formatter;
     var parser = function (value) {
         if (util_6.util.isDate(value)) {
             return value;
@@ -345,7 +350,6 @@ define("validation/rules/date", ["require", "exports", "validation/rules", "vali
             }
         }
     };
-    exports.parser = parser;
     var validateView = function (value, params) {
         if (params === void 0) { params = undefined; }
         var sucess = false;
@@ -364,7 +368,6 @@ define("validation/rules/date", ["require", "exports", "validation/rules", "vali
             message: textFormatter.format(defaultMessage)
         };
     };
-    exports.validateView = validateView;
     var validateModel = function (value, params) {
         if (params === void 0) { params = undefined; }
         var sucess = false;
@@ -384,7 +387,6 @@ define("validation/rules/date", ["require", "exports", "validation/rules", "vali
             message: textFormatter.format(defaultMessage)
         };
     };
-    exports.validateModel = validateModel;
     var rule = {
         name: name,
         validateView: validateView,
@@ -393,10 +395,10 @@ define("validation/rules/date", ["require", "exports", "validation/rules", "vali
         formatter: formatter,
         priority: 900
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
 //define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util', 'ValidationApp/validation/rules/date'], function (textFormatter, rules, util, ruleDate) {
-define("validation/rules/dateCompare", ["require", "exports", "validation/rules", "validation/util", "validation/i18n/textFormatter", "validation/rules/date"], function (require, exports, rules, util_7, textFormatter, ruleDate) {
+define("validation/rules/dateCompare", ["require", "exports", "validation/util", "validation/i18n/textFormatter", "validation/rules/date"], function (require, exports, util_7, textFormatter, ruleDate) {
     "use strict";
     var defaultMessageSupEqual = 'Veuillez saisir une date supérieur ou égale au {0}.';
     var defaultMessageInfEqual = 'Veuillez saisir une date inférieur ou égale au {0}.';
@@ -456,7 +458,7 @@ define("validation/rules/dateCompare", ["require", "exports", "validation/rules"
     };
     var validateView = function (value, params) {
         // On test la validitée de la date
-        var result = ruleDate.validateView(value);
+        var result = ruleDate.rule.validateView(value);
         if (!result.success) {
             return result;
         }
@@ -480,10 +482,9 @@ define("validation/rules/dateCompare", ["require", "exports", "validation/rules"
             message: getMessage(params)
         };
     };
-    exports.validateView = validateView;
     var validateModel = function (value, params) {
         // On test la validitée de la date
-        var result = ruleDate.validateModel(value);
+        var result = ruleDate.rule.validateModel(value);
         if (!result.success) {
             return result;
         }
@@ -501,39 +502,38 @@ define("validation/rules/dateCompare", ["require", "exports", "validation/rules"
             message: getMessage(params)
         };
     };
-    exports.validateModel = validateModel;
     var rule = {
         name: name,
         priority: 600,
         validateView: validateView,
         validateModel: validateModel,
-        parser: ruleDate.parser,
-        formatter: ruleDate.formatter
+        parser: ruleDate.rule.parser,
+        formatter: ruleDate.rule.formatter
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
-define("validation/rules/pastDate", ["require", "exports", "validation/rules", "validation/rules/dateCompare", "validation/rules/date"], function (require, exports, rules, dateCompare, date) {
+define("validation/rules/pastDate", ["require", "exports", "validation/rules/dateCompare", "validation/rules/date"], function (require, exports, dateCompare, date) {
     "use strict";
     var name = "pastDate";
     var validateView = function (value, params) {
-        var result = dateCompare.validateView(value, { 'dateCompare': { compare: "<=" } });
+        var result = dateCompare.rule.validateView(value, { 'dateCompare': { compare: "<=" } });
         result.message = "La date doit être inférieure ou égale à la date du jour.";
         return result;
     };
     var validateModel = function (value, params) {
-        return dateCompare.validateModel(value, { 'dateCompare': { compare: "<=" } });
+        return dateCompare.rule.validateModel(value, { 'dateCompare': { compare: "<=" } });
     };
     var rule = {
         name: name,
         priority: 600,
         validateView: validateView,
         validateModel: validateModel,
-        parser: date.parser,
-        formatter: date.formatter
+        parser: date.rule.parser,
+        formatter: date.rule.formatter
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
-define("validation/rules/number", ["require", "exports", "validation/rules", "validation/util", "validation/i18n/textFormatter"], function (require, exports, rules, util_8, textFormatter) {
+define("validation/rules/number", ["require", "exports", "validation/util", "validation/i18n/textFormatter"], function (require, exports, util_8, textFormatter) {
     "use strict";
     var defaultMessage = 'Veuillez saisir un nombre.';
     var defaultMessageDecimal = "Veuillez saisir un nombre avec {0} décimal(s) au maximum.";
@@ -608,9 +608,9 @@ define("validation/rules/number", ["require", "exports", "validation/rules", "va
         formatter: formatter,
         priority: 500
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
-define("validation/rules/pattern", ["require", "exports", "validation/rules", "validation/util"], function (require, exports, rules, util_9) {
+define("validation/rules/pattern", ["require", "exports", "validation/util"], function (require, exports, util_9) {
     "use strict";
     var defaultMessage = 'Veuillez respecter le bon format.';
     var name = "pattern";
@@ -642,7 +642,6 @@ define("validation/rules/pattern", ["require", "exports", "validation/rules", "v
             message: defaultMessage
         };
     };
-    exports.validateView = validateView;
     var validateModel = function (value, params) {
         if (params === void 0) { params = undefined; }
         var success = false;
@@ -663,15 +662,14 @@ define("validation/rules/pattern", ["require", "exports", "validation/rules", "v
             message: defaultMessage
         };
     };
-    exports.validateModel = validateModel;
     var rule = {
         name: name,
         validateView: validateView,
         validateModel: validateModel
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
-define("validation/rules/iban", ["require", "exports", "validation/rules", "validation/util"], function (require, exports, rules, util_10) {
+define("validation/rules/iban", ["require", "exports", "validation/util"], function (require, exports, util_10) {
     "use strict";
     var defaultMessage = 'Veuillez saisir un IBAN valide.';
     var name = "iban";
@@ -735,7 +733,7 @@ define("validation/rules/iban", ["require", "exports", "validation/rules", "vali
         validateView: validate,
         validateModel: validate
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
 define("validation/rules/bic", ["require", "exports", "validation/util"], function (require, exports, util_11) {
     "use strict";
@@ -766,8 +764,9 @@ define("validation/rules/bic", ["require", "exports", "validation/util"], functi
         validateView: validate,
         validateModel: validate
     };
+    exports.rule = rule;
 });
-define("validation/rules/digit", ["require", "exports", "validation/rules", "validation/util"], function (require, exports, rules, util_12) {
+define("validation/rules/digit", ["require", "exports", "validation/util"], function (require, exports, util_12) {
     "use strict";
     var defaultMessage = 'Veuillez saisir un entier.';
     var name = "digit";
@@ -777,7 +776,6 @@ define("validation/rules/digit", ["require", "exports", "validation/rules", "val
         }
         return value.toString();
     };
-    exports.formatter = formatter;
     var parser = function (value) {
         if (typeof value == "undefined") {
             return null;
@@ -798,7 +796,6 @@ define("validation/rules/digit", ["require", "exports", "validation/rules", "val
             }
         }
     };
-    exports.parser = parser;
     /// <summary>
     /// Verifie si la valeur saisie est un entier
     /// </summary>
@@ -819,7 +816,6 @@ define("validation/rules/digit", ["require", "exports", "validation/rules", "val
             message: defaultMessage
         };
     };
-    exports.validateView = validateView;
     var validateModel = function (value, params) {
         var success = false;
         if (util_12.util.isEmptyVal(value)) {
@@ -833,7 +829,6 @@ define("validation/rules/digit", ["require", "exports", "validation/rules", "val
             message: defaultMessage
         };
     };
-    exports.validateModel = validateModel;
     var rule = {
         name: name,
         validateView: validateView,
@@ -842,26 +837,22 @@ define("validation/rules/digit", ["require", "exports", "validation/rules", "val
         formatter: formatter,
         priority: 600
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
-//  return rule;
-//}); 
-define("validation/rules/digits", ["require", "exports", "validation/rules", "validation/rules/digit"], function (require, exports, rules, digit) {
+define("validation/rules/digits", ["require", "exports", "validation/rules/digit"], function (require, exports, digit) {
     "use strict";
     var name = "digits";
     var rule = {
         name: name,
-        validateView: digit.validateView,
-        validateModel: digit.validateModel,
-        parser: digit.parser,
-        formatter: digit.formatter,
+        validateView: digit.rule.validateView,
+        validateModel: digit.rule.validateModel,
+        parser: digit.rule.parser,
+        formatter: digit.rule.formatter,
         priority: 500
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
-//  return rule;
-//}); 
-define("validation/rules/ssn", ["require", "exports", "validation/rules", "validation/util"], function (require, exports, rules, util_13) {
+define("validation/rules/ssn", ["require", "exports", "validation/util"], function (require, exports, util_13) {
     "use strict";
     var defaultMessage = 'Veuillez saisir un n° de sécurité sociale valide.';
     var name = "ssn";
@@ -929,9 +920,9 @@ define("validation/rules/ssn", ["require", "exports", "validation/rules", "valid
         validateView: validate,
         validateModel: validate
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
-define("validation/rules/maxLength", ["require", "exports", "validation/rules", "validation/util", "validation/i18n/textFormatter"], function (require, exports, rules, util_14, textFormatter) {
+define("validation/rules/maxLength", ["require", "exports", "validation/util", "validation/i18n/textFormatter"], function (require, exports, util_14, textFormatter) {
     "use strict";
     var defaultMessage = 'Veuillez saisir au plus {0} caractère(s).';
     var name = "maxLength";
@@ -966,15 +957,14 @@ define("validation/rules/maxLength", ["require", "exports", "validation/rules", 
             message: textFormatter.format(defaultMessage, maxLength)
         };
     };
-    exports.validateView = validateView;
     var rule = {
         name: name,
         validateView: validateView,
         validateModel: validateView
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
-define("validation/rules/firstName", ["require", "exports", "validation/rules", "validation/util", "validation/rules/pattern", "validation/rules/maxLength"], function (require, exports, rules, util_15, pattern, maxLength) {
+define("validation/rules/firstName", ["require", "exports", "validation/util", "validation/rules/pattern", "validation/rules/maxLength"], function (require, exports, util_15, pattern, maxLength) {
     "use strict";
     var defaultMessage = 'Le nom est invalide.';
     var name = "firstname";
@@ -983,11 +973,11 @@ define("validation/rules/firstName", ["require", "exports", "validation/rules", 
         if (util_15.util.isEmptyVal(value)) {
             success = true;
         }
-        var resultMaxLength = maxLength.validateView(value, 50);
+        var resultMaxLength = maxLength.rule.validateView(value, 50);
         if (!resultMaxLength.success) {
             return resultMaxLength;
         }
-        var resultPattern = pattern.validateView(value, /^[a-zâãäåæçèéêëìíîïðñòóôõøùúûüýþÿiA-Z -]*$/);
+        var resultPattern = pattern.rule.validateView(value, /^[a-zâãäåæçèéêëìíîïðñòóôõøùúûüýþÿiA-Z -]*$/);
         if (!resultPattern.success) {
             success = false;
         }
@@ -996,29 +986,28 @@ define("validation/rules/firstName", ["require", "exports", "validation/rules", 
             message: defaultMessage
         };
     };
-    exports.validateView = validateView;
     var rule = {
         name: name,
         validateView: validateView,
         validateModel: validateView
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
-define("validation/rules/lastName", ["require", "exports", "validation/rules", "validation/rules/firstName"], function (require, exports, rules, firstName) {
+define("validation/rules/lastName", ["require", "exports", "validation/rules/firstName"], function (require, exports, firstName) {
     "use strict";
     var defaultMessage = 'Le nom est invalide.';
     var name = "lastname";
     var validate = function (value, params) {
-        return firstName.validateView(value, params);
+        return firstName.rule.validateView(value, params);
     };
     var rule = {
         name: name,
         validateView: validate,
         validateModel: validate
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
-define("validation/rules/minLength", ["require", "exports", "validation/rules", "validation/util", "validation/i18n/textFormatter"], function (require, exports, rules, util_16, textFormatter) {
+define("validation/rules/minLength", ["require", "exports", "validation/util", "validation/i18n/textFormatter"], function (require, exports, util_16, textFormatter) {
     "use strict";
     var defaultMessage = 'Veuillez saisir au moins {0} caractère(s).';
     var name = "minLength";
@@ -1058,9 +1047,9 @@ define("validation/rules/minLength", ["require", "exports", "validation/rules", 
         validateView: validate,
         validateModel: validate
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
-define("validation/rules/zipCode", ["require", "exports", "validation/rules", "validation/util"], function (require, exports, rules, util_17) {
+define("validation/rules/zipCode", ["require", "exports", "validation/util"], function (require, exports, util_17) {
     "use strict";
     var defaultMessage = 'Veuillez saisir un code postal valide.';
     var name = "zipCode";
@@ -1146,9 +1135,9 @@ define("validation/rules/zipCode", ["require", "exports", "validation/rules", "v
         validateView: validate,
         validateModel: validate
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
-define("validation/rules/phone", ["require", "exports", "validation/rules", "validation/util"], function (require, exports, rules, util_18) {
+define("validation/rules/phone", ["require", "exports", "validation/util"], function (require, exports, util_18) {
     "use strict";
     var defaultMessage = 'Veuillez saisir un n° de téléphone valide.';
     var name = "phone";
@@ -1252,7 +1241,7 @@ define("validation/rules/phone", ["require", "exports", "validation/rules", "val
         validateView: validate,
         validateModel: validate
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
 ///define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
 define("validation/rules/custom", ["require", "exports"], function (require, exports) {
@@ -1308,8 +1297,9 @@ define("validation/rules/custom", ["require", "exports"], function (require, exp
         validateModel: validateModel,
         priority: 50
     };
+    exports.rule = rule;
 });
-define("validation/rules/equal", ["require", "exports", "validation/rules", "validation/util"], function (require, exports, rules, util_19) {
+define("validation/rules/equal", ["require", "exports", "validation/util"], function (require, exports, util_19) {
     "use strict";
     var defaultMessage = "Les valeurs doivent être égales.";
     var name = "equal";
@@ -1348,12 +1338,33 @@ define("validation/rules/equal", ["require", "exports", "validation/rules", "val
         validateView: validate,
         validateModel: validate
     };
-    rules.add(rule);
+    exports.rule = rule;
 });
-define("validation/validateRules", ["require", "exports", "validation/rules", "validation/util", "validation/rules/max", "validation/rules/required"], function (require, exports, rules, util_20, max, ruleRequired) {
+define("validation/validateRules", ["require", "exports", "validation/rules", "validation/util", "validation/rules/max", "validation/rules/required", "validation/rules/email", "validation/rules/url", "validation/rules/min", "validation/rules/date", "validation/rules/dateCompare", "validation/rules/pastDate", "validation/rules/number", "validation/rules/iban", "validation/rules/bic", "validation/rules/digit", "validation/rules/digits", "validation/rules/pattern", "validation/rules/ssn", "validation/rules/lastName", "validation/rules/firstName", "validation/rules/maxLength", "validation/rules/minLength", "validation/rules/zipCode", "validation/rules/phone", "validation/rules/custom", "validation/rules/equal"], function (require, exports, rules, util_20, max, ruleRequired, email, url, min, date, dateCompare, pastDate, ruleNumber, ruleIban, bic, digit, digits, pattern, ssn, lastName, firstName, maxLength, minLength, zipCode, phone, custom, equal) {
     "use strict";
     rules.add(max.rule);
     rules.add(ruleRequired.rule);
+    rules.add(email.rule);
+    rules.add(url.rule);
+    rules.add(min.rule);
+    rules.add(date.rule);
+    rules.add(dateCompare.rule);
+    rules.add(pastDate.rule);
+    rules.add(ruleNumber.rule);
+    rules.add(ruleIban.rule);
+    rules.add(bic.rule);
+    rules.add(digit.rule);
+    rules.add(digits.rule);
+    rules.add(pattern.rule);
+    rules.add(ssn.rule);
+    rules.add(lastName.rule);
+    rules.add(firstName.rule);
+    rules.add(maxLength.rule);
+    rules.add(minLength.rule);
+    rules.add(zipCode.rule);
+    rules.add(phone.rule);
+    rules.add(custom.rule);
+    rules.add(equal.rule);
     function isAddRule(ruleName, validateMethodName) {
         var rule = rules.getRule(ruleName);
         if (rule) {

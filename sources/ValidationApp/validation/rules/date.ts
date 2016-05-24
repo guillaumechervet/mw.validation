@@ -39,8 +39,7 @@ import * as textFormatter from "../i18n/textFormatter";
             sucess = true;
         } else if (util.isDate(value)) {
             sucess = true;
-        }
-        else {
+        } else {
             var date = util.toDate(value);
             sucess = !!date;
         }
