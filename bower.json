@@ -6,7 +6,7 @@
     "CHERVET Guillaume <guillaume.chervet@gmail.com>"
   ],
   "description": "Javascript Validation Rules",
-  "main": "mw.validation.js",
+  "main": "build/mw.validation.js",
   "moduleType": [],
   "keywords": [
     "javascript",
@@ -21,7 +21,5 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-    "globalize": "^1.1.1"
-  }
+  "dependencies": {  }
 }
