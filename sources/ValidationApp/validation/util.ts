@@ -28,10 +28,15 @@ class Util  {
     } 
 
         public toDate(val:string): Date{
-            /* Convertir un string de type dd/mm/yyyy en type Date */
-            var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
-            var dt = new Date(val.replace(pattern,'$3-$2-$1'));
-            return dt;
+            try {
+                /* Convertir un string de type dd/mm/yyyy en type Date */
+                var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
+                var dt = new Date(val.replace(pattern,'$3-$2-$1'));
+                return dt;
+                }
+            catch(error){
+                return null;
+            }
         }
         public formatDate(date: Date): string {
             

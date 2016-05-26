@@ -18,11 +18,19 @@
             })();
              
              (function() {
-                var rules = {input: [ 'date']};
+                var rules = {input: ['date']};
                 
                 //var date = myApi.validation
                 var result = mw.validation.validateView("31/08/1983", rules.input);
                 console.log("Assert : ", result[0].success);
+             })();
+             
+               (function() {
+                var rules = {input: [ 'date']};
+                
+                //var date = myApi.validation
+                var result = mw.validation.validateView("31/08/3", rules.input);
+                console.log("Assert : ", !result[0].success);
              })();
              
                (function() {
