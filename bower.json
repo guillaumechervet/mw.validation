@@ -1,12 +1,12 @@
 {
   "name": "mw.validation",
   "homepage": "https://github.com/guillaumechervet/mw.validation",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "authors": [
     "CHERVET Guillaume <guillaume.chervet@gmail.com>"
   ],
   "description": "Javascript Validation Rules",
-  "main": "mw.validation.js",
+  "main": "build/mw.validation.js",
   "moduleType": [],
   "keywords": [
     "javascript",
@@ -21,7 +21,5 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-    "globalize": "^1.1.1"
-  }
+  "dependencies": {  }
 }
