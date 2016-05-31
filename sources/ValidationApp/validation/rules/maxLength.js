@@ -1,5 +1,4 @@
 "use strict";
-var rules = require("../rules");
 var util_1 = require("../util");
 var textFormatter = require("../i18n/textFormatter");
 var defaultMessage = 'Veuillez saisir au plus {0} caractère(s).';
@@ -35,5 +34,4 @@ var rule = {
     validateModel: validateView
 };
 exports.rule = rule;
-rules.add(rule);
 //# sourceMappingURL=maxLength.js.map

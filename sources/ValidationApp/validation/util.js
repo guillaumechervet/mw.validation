@@ -26,7 +26,22 @@ var Util = (function () {
         return Object.prototype.toString.apply(val) === "[object Date]";
     };
     Util.prototype.toDate = function (val) {
-        return new Date();
+        try {
+            var dateString = "13/10/2014";
+            var dataSplit = dateString.split('/');
+            var dateConverted;
+            if (dataSplit[2].split(" ").length > 1) {
+                var hora = dataSplit[2].split(" ")[1].split(':');
+                dataSplit[2] = dataSplit[2].split(" ")[0];
+                dateConverted = new Date(parseInt(dataSplit[2]), parseInt(dataSplit[1]) - 1, parseInt(dataSplit[0]), parseInt(hora[0]), parseInt(hora[1]));
+            }
+            else {
+                dateConverted = new Date(parseInt(dataSplit[2]), parseInt(dataSplit[1]) - 1, parseInt(dataSplit[0]));
+            }
+        }
+        catch (error) {
+            return null;
+        }
     };
     Util.prototype.formatDate = function (date) {
         var d = date.getDate();

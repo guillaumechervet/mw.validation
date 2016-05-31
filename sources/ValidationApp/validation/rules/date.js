@@ -3,10 +3,21 @@ var util_1 = require("../util");
 var textFormatter = require("../i18n/textFormatter");
 var defaultMessage = 'Veuillez saisir une date valide.';
 var name = "date";
+var _cleanDate = function (value) {
+    if (typeof value === "string") {
+        var date = new Date(value);
+        var sucess = !!date;
+        if (sucess) {
+            return date;
+        }
+    }
+    return date;
+};
 var formatter = function (value) {
     if (!value) {
         return "";
     }
+    value = _cleanDate(value);
     if (util_1.util.isDate(value)) {
         return util_1.util.formatDate(value);
     }
@@ -51,6 +62,7 @@ var validateModel = function (value, params) {
         sucess = true;
     }
     else {
+        value = _cleanDate(value);
         if (util_1.util.isDate(value)) {
             sucess = true;
         }

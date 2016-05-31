@@ -1,5 +1,4 @@
 "use strict";
-var rules = require("../rules");
 var util_1 = require("../util");
 var defaultMessage = 'Veuillez saisir un entier.';
 var name = "digit";
@@ -66,5 +65,4 @@ var rule = {
     priority: 600
 };
 exports.rule = rule;
-rules.add(rule);
 //# sourceMappingURL=digit.js.map

@@ -8,11 +8,25 @@ import * as textFormatter from "../i18n/textFormatter";
 
     var defaultMessage = 'Veuillez saisir une date valide.';
     var name = "date";
+    
+    var _cleanDate = function(value){
+         if (typeof value === "string") {
+                var date = new Date(value);
+                var sucess = !!date;
+                if (sucess) {
+                    return date;
+                }
+            }
+            return date;
+    }
 
     var formatter = function (value) {
         if (!value) {
             return "";
         }
+        // Cas ou la date est un string qui ne devrais pas arriver
+       value = _cleanDate(value);
+            
         if (util.isDate(value)) {
             return util.formatDate(value);
         }
@@ -54,7 +68,8 @@ import * as textFormatter from "../i18n/textFormatter";
         if (util.isEmptyVal(value)) {
             sucess = true;
         } else {
-
+            // Cas ou la date est un string qui ne devrais pas arriver
+            value = _cleanDate(value);
             if (util.isDate(value)) {
                 sucess = true;
             } else {

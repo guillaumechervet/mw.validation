@@ -1,5 +1,4 @@
 "use strict";
-var rules = require("../rules");
 var util_1 = require("../util");
 var pattern = require("./pattern");
 var maxLength = require("./maxLength");
@@ -29,5 +28,4 @@ var rule = {
     validateModel: validateView
 };
 exports.rule = rule;
-rules.add(rule);
 //# sourceMappingURL=firstName.js.map

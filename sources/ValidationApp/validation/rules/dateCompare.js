@@ -1,5 +1,4 @@
 "use strict";
-var rules = require("../rules");
 var util_1 = require("../util");
 var textFormatter = require("../i18n/textFormatter");
 var ruleDate = require("./date");
@@ -107,5 +106,4 @@ var rule = {
     formatter: ruleDate.rule.formatter
 };
 exports.rule = rule;
-rules.add(rule);
 //# sourceMappingURL=dateCompare.js.map

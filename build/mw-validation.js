@@ -563,10 +563,23 @@ define("validation/util", ["require", "exports"], function (require, exports) {
             return Object.prototype.toString.apply(val) === "[object Date]";
         };
         Util.prototype.toDate = function (val) {
-            /* Convertir un string de type dd/mm/yyyy en type Date */
-            var pattern = /(\d{2})\/(\d{2})\/(\d{4})/;
-            var dt = new Date(val.replace(pattern, '$3-$2-$1'));
-            return dt;
+            try {
+                /* Convertir un string de type dd/mm/yyyy en type Date */
+                var dateString = "13/10/2014";
+                var dataSplit = dateString.split('/');
+                var dateConverted;
+                if (dataSplit[2].split(" ").length > 1) {
+                    var hora = dataSplit[2].split(" ")[1].split(':');
+                    dataSplit[2] = dataSplit[2].split(" ")[0];
+                    dateConverted = new Date(parseInt(dataSplit[2]), parseInt(dataSplit[1]) - 1, parseInt(dataSplit[0]), parseInt(hora[0]), parseInt(hora[1]));
+                }
+                else {
+                    dateConverted = new Date(parseInt(dataSplit[2]), parseInt(dataSplit[1]) - 1, parseInt(dataSplit[0]));
+                }
+            }
+            catch (error) {
+                return null;
+            }
         };
         Util.prototype.formatDate = function (date) {
             var d = date.getDate();
@@ -765,10 +778,22 @@ define("validation/rules/date", ["require", "exports", "validation/util", "valid
     "use strict";
     var defaultMessage = 'Veuillez saisir une date valide.';
     var name = "date";
+    var _cleanDate = function (value) {
+        if (typeof value === "string") {
+            var date = new Date(value);
+            var sucess = !!date;
+            if (sucess) {
+                return date;
+            }
+        }
+        return date;
+    };
     var formatter = function (value) {
         if (!value) {
             return "";
         }
+        // Cas ou la date est un string qui ne devrais pas arriver
+        value = _cleanDate(value);
         if (util_6.util.isDate(value)) {
             return util_6.util.formatDate(value);
         }
@@ -814,6 +839,8 @@ define("validation/rules/date", ["require", "exports", "validation/util", "valid
             sucess = true;
         }
         else {
+            // Cas ou la date est un string qui ne devrais pas arriver
+            value = _cleanDate(value);
             if (util_6.util.isDate(value)) {
                 sucess = true;
             }

@@ -1,5 +1,4 @@
 "use strict";
-var rules = require("../rules");
 var util_1 = require("../util");
 var defaultMessage = 'Veuillez respecter le bon format.';
 var name = "pattern";
@@ -40,5 +39,4 @@ var rule = {
     validateModel: validateModel
 };
 exports.rule = rule;
-rules.add(rule);
 //# sourceMappingURL=pattern.js.map
