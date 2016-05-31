@@ -565,7 +565,7 @@ define("validation/util", ["require", "exports"], function (require, exports) {
         Util.prototype.toDate = function (val) {
             try {
                 /* Convertir un string de type dd/mm/yyyy en type Date */
-                var dateString = "13/10/2014";
+                var dateString = val;
                 var dataSplit = dateString.split('/');
                 var dateConverted;
                 if (dataSplit[2].split(" ").length > 1) {
