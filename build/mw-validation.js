@@ -576,6 +576,7 @@ define("validation/util", ["require", "exports"], function (require, exports) {
                 else {
                     dateConverted = new Date(parseInt(dataSplit[2]), parseInt(dataSplit[1]) - 1, parseInt(dataSplit[0]));
                 }
+                return dateConverted;
             }
             catch (error) {
                 return null;
@@ -2041,13 +2042,14 @@ define("validation/object/validateObject", ["require", "exports"], function (req
             for (var name in inputObject) {
                 // Cas particulié de la règle customs ejecté
                 if (name === 'validateModel' || name === 'validateView') {
+                    functions.push({ name: name, func: inputObject });
                     continue;
                 }
                 getFunctions(inputObject[name], functions);
             }
         }
         else if (typeof inputObject === 'function') {
-            functions.push(inputObject);
+            functions.push({ name: "function", func: inputObject });
         }
         return functions;
     }
@@ -2061,7 +2063,7 @@ define("validation/object/validateObject", ["require", "exports"], function (req
         }
         var l = functions.length;
         for (var i = 0; i < l; i++) {
-            results[i.toString()] = functions[i]();
+            results[i.toString()] = functions.func[i]();
         }
         return results;
     }

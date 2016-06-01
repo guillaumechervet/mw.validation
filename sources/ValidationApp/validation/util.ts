@@ -43,6 +43,7 @@ class Util  {
                     } else {
                         dateConverted = new Date(parseInt(dataSplit[2]), parseInt(dataSplit[1]) - 1, parseInt(dataSplit[0]));
                     }
+                    return dateConverted;
             }
             catch(error){
                 return null;

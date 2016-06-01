@@ -25,6 +25,7 @@ import * as textFormatter from "../i18n/textFormatter";
 
                    // Cas particulié de la règle customs ejecté
                    if (name === 'validateModel' || name === 'validateView') {
+                       functions.push({name:name, func: inputObject});
                        continue;
                    }
 
@@ -32,7 +33,7 @@ import * as textFormatter from "../i18n/textFormatter";
                }
 
            } else if (typeof inputObject === 'function') {
-               functions.push(inputObject);
+               functions.push({name:"function", func: inputObject});
            }
 
            return functions;
@@ -51,7 +52,7 @@ import * as textFormatter from "../i18n/textFormatter";
         var l = functions.length;
 
         for (var i =0; i < l; i++) {
-            results[i.toString()] = functions[i]();
+            results[i.toString()] = functions.func[i]();
         }
 
         return results;
