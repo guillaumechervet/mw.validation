@@ -30,7 +30,7 @@ class Util  {
         public toDate(val:string): Date{
             try {
                 /* Convertir un string de type dd/mm/yyyy en type Date */
-                   var dateString = "13/10/2014";
+                   var dateString = val;
                     var dataSplit = dateString.split('/');
                     var dateConverted;
 
