@@ -24,10 +24,15 @@ import * as textFormatter from "../i18n/textFormatter";
                for (var name in inputObject) {
 
                    // Cas particulié de la règle customs ejecté
-                   if (name === 'validateModel' || name === 'validateView') {
-                       functions.push({name:name, func: inputObject});
-                       continue;
-                   }
+                  // Cas particulié de la règle customs ejecté
+                    if ( name === 'validateView') {
+                        functions.push({ name: name, func: inputObject.validateView});
+                        continue;
+                    }
+                    if (name === 'validateModel') {
+                        functions.push({ name: name, func: inputObject.validateModel });
+                        continue;
+                    }
 
                    getFunctions(inputObject[name], functions);
                }
