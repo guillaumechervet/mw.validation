@@ -17,7 +17,7 @@ import * as textFormatter from "../i18n/textFormatter";
                     return date;
                 }
             }
-            return date;
+            return value;
     }
 
     var formatter = function (value) {

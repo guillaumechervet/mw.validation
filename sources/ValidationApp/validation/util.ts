@@ -41,7 +41,19 @@ class Util  {
                         dateConverted = new Date(parseInt(dataSplit[2]), parseInt(dataSplit[1])-1, parseInt(dataSplit[0]), parseInt(hora[0]), parseInt(hora[1]));
 
                     } else {
-                        dateConverted = new Date(parseInt(dataSplit[2]), parseInt(dataSplit[1]) - 1, parseInt(dataSplit[0]));
+                        
+                        var years = 2000;
+                        var yearsString = dataSplit[2];
+                        var l = yearsString.length;
+                        if( l === 2 || l ===3){
+                            years += parseInt(yearsString);
+                        } else if(yearsString.length === 4){
+                            years = parseInt(yearsString);
+                        } else{
+                            return null;
+                        }
+                        
+                        dateConverted = new Date(years, parseInt(dataSplit[1]) - 1, parseInt(dataSplit[0]));
                     }
                     return dateConverted;
             }

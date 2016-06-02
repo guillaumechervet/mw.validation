@@ -122,7 +122,7 @@ define("validation/util", ["require", "exports"], function (require, exports) {
         Util.prototype.toDate = function (val) {
             try {
                 /* Convertir un string de type dd/mm/yyyy en type Date */
-                var dateString = "13/10/2014";
+                var dateString = val;
                 var dataSplit = dateString.split('/');
                 var dateConverted;
                 if (dataSplit[2].split(" ").length > 1) {
@@ -131,7 +131,19 @@ define("validation/util", ["require", "exports"], function (require, exports) {
                     dateConverted = new Date(parseInt(dataSplit[2]), parseInt(dataSplit[1]) - 1, parseInt(dataSplit[0]), parseInt(hora[0]), parseInt(hora[1]));
                 }
                 else {
-                    dateConverted = new Date(parseInt(dataSplit[2]), parseInt(dataSplit[1]) - 1, parseInt(dataSplit[0]));
+                    var years = 2000;
+                    var yearsString = dataSplit[2];
+                    var l = yearsString.length;
+                    if (l === 2 || l === 3) {
+                        years += parseInt(yearsString);
+                    }
+                    else if (yearsString.length === 4) {
+                        years = parseInt(yearsString);
+                    }
+                    else {
+                        return null;
+                    }
+                    dateConverted = new Date(years, parseInt(dataSplit[1]) - 1, parseInt(dataSplit[0]));
                 }
                 return dateConverted;
             }
@@ -344,7 +356,7 @@ define("validation/rules/date", ["require", "exports", "validation/util", "valid
                 return date;
             }
         }
-        return date;
+        return value;
     };
     var formatter = function (value) {
         if (!value) {
@@ -1598,8 +1610,13 @@ define("validation/object/validateObject", ["require", "exports"], function (req
         else if (typeof inputObject === 'object') {
             for (var name in inputObject) {
                 // Cas particulié de la règle customs ejecté
-                if (name === 'validateModel' || name === 'validateView') {
-                    functions.push({ name: name, func: inputObject });
+                // Cas particulié de la règle customs ejecté
+                if (name === 'validateView') {
+                    functions.push({ name: name, func: inputObject.validateView });
+                    continue;
+                }
+                if (name === 'validateModel') {
+                    functions.push({ name: name, func: inputObject.validateModel });
                     continue;
                 }
                 getFunctions(inputObject[name], functions);
