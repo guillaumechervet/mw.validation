@@ -63,7 +63,7 @@ import * as textFormatter from "../i18n/textFormatter";
 
     var validate = function (value, params) {
 
-        var sucess = true;
+        var success = true;
 
         if (typeof params == 'object' && params) {
             params = params.params;
@@ -76,12 +76,12 @@ import * as textFormatter from "../i18n/textFormatter";
         /// <param name="val">le numéro de téléphone</param>
         /// <returns>True si le numéro de téléphone est valide</returns>
         if (util.isEmptyVal(value)) {
-            sucess = true;
+            success = true;
         } else {
 
             if (util.isEmptyVal(params)) {
                 var regex = /^(\+\s?)?(^(?!\+.*)\(\+?\d+([\s\-\.]?\d+)?\)|\d+)([\s\-\.]?(\(\d+([\s\-\.]?\d+)?\)|\d+))*(\s?(x|ext\.?)\s?\d+)?$/;
-                sucess = regex.test(value);
+                success = regex.test(value);
             } else {
                 var countriesConstraints = params.split(',');
                 for (var i = 0; i < countriesConstraints.length; i++) {
@@ -92,16 +92,16 @@ import * as textFormatter from "../i18n/textFormatter";
                     }
 
                     if (regexCountry.test(value)) {
-                        sucess = true;
+                        success = true;
                     } else {
-                        sucess = false;
+                        success = false;
                     }
                 }
             }
         }
 
         return {
-            success: sucess,
+            success: success,
             message: defaultMessage
         };
     };

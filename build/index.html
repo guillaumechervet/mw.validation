@@ -40,6 +40,22 @@
                 var result = mw.validation.validateView("21", rules.input);
                 console.log("Assert : ", result[0].success);
              })();
+
+             (function() {
+                var rules = {input: [ {'phone': { params:'FR'}}]};
+                
+                //var date = myApi.validation
+                var result = mw.validation.validateView("0676975613", rules.input);
+                console.log("Assert : ", result[0].success);
+             })();
+
+              (function() {
+                var rules = {input: [ {'phone':  { params:'FR'}}]};
+                
+                //var date = myApi.validation
+                var result = mw.validation.validateView("06975613", rules.input);
+                console.log("Assert : ", result[0].success);
+             })();
              
         </script>
         

@@ -14,6 +14,7 @@ import * as textFormatter from "./i18n/textFormatter";
    import * as ruleNumber from     './rules/number';
    import * as ruleIban from     './rules/iban';
   import * as bic from      './rules/bic';
+  import * as color from      './rules/color';
    import * as digit from     './rules/digit';
     import * as digits from    './rules/digits';
     import * as pattern from    './rules/pattern';
@@ -26,7 +27,6 @@ import * as minLength from './rules/minLength';
   import * as phone from      './rules/phone';
    import * as custom from     './rules/custom';
    import * as equal from     './rules/equal';
-   
    
    rules.add(max.rule);
    rules.add(ruleRequired.rule);
