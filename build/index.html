@@ -53,9 +53,25 @@
                 var rules = {input: [ {'phone':  { params:'FR'}}]};
                 
                 //var date = myApi.validation
-                var result = mw.validation.validateView("06975613", rules.input);
+                var result = mw.validation.validateView("0697613", rules.input);
                 console.log("Assert : ", result[0].success);
              })();
+
+              (function() {
+                var rules = {input: [ 'color']};
+                
+                //#abc and #abcdef   but not #abcd
+                var result = mw.validation.validateView("#abc", rules.input);
+                console.log("Assert : ", result[0].success);
+                result = mw.validation.validateView("#abcdef", rules.input);
+                console.log("Assert : ", result[0].success);
+                result = mw.validation.validateView("#abcd", rules.input);
+                console.log("Assert : ", result[0].success);
+                result = mw.validation.validateView("abcdef", rules.input);
+                console.log("Assert : ", result[0].success);
+             })();
+
+            
              
         </script>
         
