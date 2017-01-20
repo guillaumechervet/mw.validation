@@ -1504,8 +1504,8 @@ define("validation/rules/minLength", ["require", "exports", "validation/util", "
         }
         else {
             if (params) {
-                if (typeof params === 'object' && params.maxLength) {
-                    minLength = params.maxLength;
+                if (typeof params === 'object' && params.minLength) {
+                    minLength = params.minLength;
                 }
                 else if (typeof params === 'object' && params.params) {
                     minLength = params.params;

@@ -1,23 +1,22 @@
 {
   "compilerOptions": {
-  "noImplicitAny": false,
-  "noEmitOnError": true,
-  "removeComments": false,
-  "target": "es5",
-  "module": "amd",
-  "experimentalDecorators": true,
-  "emitDecoratorMetadata": true,
-  "inlineSourceMap": false,
-  "inlineSources": false,
-  "outFile": "build/validation.js"
+   "outDir": "build",
+   "sourceMap": true
+  /*"module": "amd",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outFile": "test.js",
+        "sourceMap": true*/
 },
+"include": [
+        "sources/**/*"
+    ],
 "exclude": [
   "node_modules",
+    "build",
   "lib",
   "bower_components",
   "wwwroot"
-],
-"files": [
-        "./sources/ValidationApp/main.ts"
-    ]
+]
 }

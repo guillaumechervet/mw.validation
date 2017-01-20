@@ -9,7 +9,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks("grunt-ts");
     grunt.loadNpmTasks("grunt-tslint");
- grunt.loadNpmTasks('grunt-shell');
+    grunt.loadNpmTasks('grunt-shell');
  
 
     grunt.initConfig({

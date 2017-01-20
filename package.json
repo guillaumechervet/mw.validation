@@ -20,7 +20,7 @@
     "grunt-ts": "4.0.1",
     "grunt-tslint": "^3.0.1",
     "tslint": "^3.3.0",
-    "typescript": "^1.8.2",
+    "typescript": "^2.1.5",
     "uglify-js": "2.4.20",
     "mocha": "^2.3.2"
   }
