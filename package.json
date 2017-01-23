@@ -2,6 +2,7 @@
   "name": "package",
   "version": "1.0.0",
   "private": true,
+  "main":"./build/index.js",
   "devDependencies": {
     "almond": "^0.3.2",
     "grunt": "0.4.5",

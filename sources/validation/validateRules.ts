@@ -284,9 +284,24 @@ rules.add(equal.rule);
 
         var add =rules.add;
 
+        function firstError(validationResults){
+            var error = null;
+            if(validationResults){
+                for(var i=0;i<validationResults.length;i++){
+                    var result = validationResults[i];
+                    if(!result.success){
+                        error = result;
+                        break;
+                    }
+                }
+            }
+            return error;
+        }
+
         export {
             add,
             validateView,
             validateModel,
-            validateDependencies
+            validateDependencies,
+            firstError
         };
