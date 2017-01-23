@@ -228,4 +228,18 @@ function validateModel(value, ruleDefinition) {
 exports.validateModel = validateModel;
 var add = rules.add;
 exports.add = add;
+function firstError(validationResults) {
+    var error = null;
+    if (validationResults) {
+        for (var i = 0; i < validationResults.length; i++) {
+            var result = validationResults[i];
+            if (!result.success) {
+                error = result;
+                break;
+            }
+        }
+    }
+    return error;
+}
+exports.firstError = firstError;
 //# sourceMappingURL=validateRules.js.map

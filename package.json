@@ -1,7 +1,7 @@
 {
-  "name": "package",
-  "version": "1.0.0",
-  "private": true,
+  "name": "mw.validation",
+  "version": "1.0.5",
+  "private": false,
   "main":"./build/index.js",
   "devDependencies": {
     "almond": "^0.3.2",
