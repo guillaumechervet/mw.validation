@@ -23,7 +23,7 @@ import * as textFormatter from "../i18n/textFormatter";
 
                for (var name in inputObject) {
 
-                   // Cas particulié de la règle customs ejecté
+                  // Cas particulié de la règle customs ejecté
                   // Cas particulié de la règle customs ejecté
                     if ( name === 'validateView') {
                         functions.push({ name: name, func: inputObject.validateView});

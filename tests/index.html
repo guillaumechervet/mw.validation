@@ -1,88 +1,143 @@
 <!doctype html>
-<html ng-app='test' >
-    <head>
-        <meta charset="utf-8">
-        <title>Framework Validation</title>
-        <script type="text/javascript" src="mw-validation.js"></script>
-  </head>
+<html ng-app='test'>
 
-    <body>
-        
-        <script type="text/javascript">
-        
-            (function() {
-                var rules = {input: [{'required':{message:'New error message'}}]};
-                
-                var result = mw.validation.validateView("toto", rules.input);
-                console.log("Assert : ", result[0].success);
-            })();
-             
-             (function() {
-                var rules = {input: ['date']};
-                
-                //var date = myApi.validation
-                var result = mw.validation.validateView("31/08/1983", rules.input);
-                console.log("Assert : ", result[0].success);
-             })();
-             
-               (function() {
-                var rules = {input: [ 'date']};
-                
-                //var date = myApi.validation
-                var result = mw.validation.validateView("31/08/3", rules.input);
-                console.log("Assert : ", !result[0].success);
-             })();
-             
-               (function() {
-                var rules = {input: [ 'digit']};
-                
-                //var date = myApi.validation
-                var result = mw.validation.validateView("21", rules.input);
-                console.log("Assert : ", result[0].success);
-             })();
+<head>
+  <meta charset="utf-8">
+  <title>Framework Validation</title>
+  <script type="text/javascript" src="../build/mw-validation.js"></script>
+</head>
 
-             (function() {
-                var rules = {input: [ {'phone': { params:'FR'}}]};
-                
-                //var date = myApi.validation
-                var result = mw.validation.validateView("0676975613", rules.input);
-                console.log("Assert : ", result[0].success);
-             })();
+<body>
 
-              (function() {
-                var rules = {input: [ {'phone':  { params:'FR'}}]};
-                
-                //var date = myApi.validation
-                var result = mw.validation.validateView("0697613", rules.input);
-                console.log("Assert : ", result[0].success);
-             })();
+  <script type="text/javascript">
+    (function () {
+      var model = {
+        id: "3",
+        name: "Ploufragan",
+        author: "Guillaume",
+        review: 3,
+        image: {
+          url: "http://localhost:8081/api/files/7577fcc0-0580-11e7-a2b8-5dcb02604871_hackathon.PNG",
+          title: "Lieu naturel"
+        }
+      };
+
+      var rules = {
+        id:['required'],
+        name: ['required'],
+        author: ['required'],
+        review: ['required', 'digit'],
+        image: [],
+        '@image': {
+          url: [],
+          title:[]
+        }
+      };
+
+    })
+
+    (function () {
+      var rules = {
+        input: [{
+          'required': {
+            message: 'New error message'
+          }
+        }]
+      };
+
+      var result = mw.validation.validateView("toto", rules.input);
+      console.log("Assert : ", result[0].success);
+    })();
+
+    (function () {
+      var rules = {
+        input: ['date']
+      };
+
+      //var date = myApi.validation
+      var result = mw.validation.validateView("31/08/1983", rules.input);
+      console.log("Assert : ", result[0].success);
+    })();
+
+    (function () {
+      var rules = {
+        input: ['date']
+      };
+
+      //var date = myApi.validation
+      var result = mw.validation.validateView("31/08/3", rules.input);
+      console.log("Assert : ", !result[0].success);
+    })();
+
+    (function () {
+      var rules = {
+        input: ['digit']
+      };
+
+      //var date = myApi.validation
+      var result = mw.validation.validateView("21", rules.input);
+      console.log("Assert : ", result[0].success);
+    })();
+
+    (function () {
+      var rules = {
+        input: [{
+          'phone': {
+            params: 'FR'
+          }
+        }]
+      };
+
+      //var date = myApi.validation
+      var result = mw.validation.validateView("0676975613", rules.input);
+      console.log("Assert : ", result[0].success);
+    })();
+
+    (function () {
+      var rules = {
+        input: [{
+          'phone': {
+            params: 'FR'
+          }
+        }]
+      };
+
+      //var date = myApi.validation
+      var result = mw.validation.validateView("0697613", rules.input);
+      console.log("Assert : ", result[0].success);
+    })();
 
 
-          (function() {
-                var rules = {input: [ {'maxLength': 100}, {minLength:5}]};
-                
-                //var date = myApi.validation
-                var result = mw.validation.validateView("0697", rules.input);
-                console.log("Assert : ", result[0].success);
-             })();
+    (function () {
+      var rules = {
+        input: [{
+          'maxLength': 100
+        }, {
+          minLength: 5
+        }]
+      };
+
+      //var date = myApi.validation
+      var result = mw.validation.validateView("0697", rules.input);
+      console.log("Assert : ", result[0].success);
+    })();
 
 
-              (function() {
-                var rules = {input: [ 'color']};
-                
-                //#abc and #abcdef   but not #abcd
-                var result = mw.validation.validateView("#abc", rules.input);
-                console.log("Assert : ", result[0].success);
-                result = mw.validation.validateView("#abcdef", rules.input);
-                console.log("Assert : ", result[0].success);
-                result = mw.validation.validateView("#abcd", rules.input);
-                console.log("Assert : ", result[0].success);
-                result = mw.validation.validateView("abcdef", rules.input);
-                console.log("Assert : ", result[0].success);
-             })();
+    (function () {
+      var rules = {
+        input: ['color']
+      };
 
-            
-             
-        </script>
-        
-  </body>
+      //#abc and #abcdef   but not #abcd
+      var result = mw.validation.validateView("#abc", rules.input);
+      console.log("Assert : ", result[0].success);
+      result = mw.validation.validateView("#abcdef", rules.input);
+      console.log("Assert : ", result[0].success);
+      result = mw.validation.validateView("#abcd", rules.input);
+      console.log("Assert : ", result[0].success);
+      result = mw.validation.validateView("abcdef", rules.input);
+      console.log("Assert : ", result[0].success);
+    })();
+  </script>
+
+</body>
