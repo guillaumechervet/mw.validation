@@ -10,6 +10,45 @@
 <body>
 
   <script type="text/javascript">
+
+   function validateModelInternal(model, rules, result, key){
+     if(!rules){
+       return result;
+     }
+
+      for(let name in model){
+       let value= model[name];
+        if(rules[name]){
+          let valResult = mw.validation.validateModel(value, rules[name]);
+          if(!valResult.success)
+          {
+            result.success=false;
+            result.detail[key + name]= valResult;
+          }
+        }
+      }
+
+       for(let name in model){
+          let value= model[name];
+          if(typeof value === 'object'){
+            validateModelInternal(value, rules['@'+name], result, key+'.'+name);
+          } else if( Object.prototype.toString.call( value ) === '[object Array]' ) {
+              for(var i=0;i<value.length;i++){
+                validateModelInternal(value, rules['[]'+name], result, key+'.'+name+'['+i+']');
+              }
+          }
+       }
+      return result;
+    }
+
+    function validateModel(model, rules){
+
+      var result={success:true,detail:{}};
+      var key='model';
+      validateModelInternal(model, rules, result, key);
+      return result;
+    }
+
     (function () {
       var model = {
         id: "3",
@@ -18,7 +57,7 @@
         review: 3,
         image: {
           url: "http://localhost:8081/api/files/7577fcc0-0580-11e7-a2b8-5dcb02604871_hackathon.PNG",
-          title: "Lieu naturel"
+          title: ""
         }
       };
 
@@ -27,12 +66,13 @@
         name: ['required'],
         author: ['required'],
         review: ['required', 'digit'],
-        image: [],
-        '@image': {
+       '@image': {
           url: [],
           title:[]
         }
       };
+
+      validateModel(model, rules);
 
     })
 
