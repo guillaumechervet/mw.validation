@@ -2032,59 +2032,58 @@ define("validation/validateRules", ["require", "exports", "validation/rules", "v
     var add = rules.add;
     exports.add = add;
 });
-define("validation/object/validateObject", ["require", "exports"], function (require, exports) {
+define("validation/object/validateObject", ["require", "exports", "validation/validateRules"], function (require, exports, validation) {
     "use strict";
-    // Liste toutes les fonctions d'un objet (parcour tout l'objet en recurssif)
-    function getFunctions(inputObject, functions) {
-        if (functions === void 0) { functions = undefined; }
-        if (!functions) {
-            functions = [];
-        }
-        if (inputObject instanceof Array) {
-            // On recherche s'il y a un onlyIf générale sur toute les règles associées
-            for (var i = 0; i < inputObject.length; i++) {
-                var newInputObject = inputObject[i];
-                getFunctions(newInputObject, functions);
+    function validateModelInternal(model, rules, result, key, isStrict) {
+      if (!rules) {
+        return result;
+      }
+
+      for (let name in model) {
+        let value = model[name];
+        if (rules[name]) {
+          let valResults = validation.validateModel(value, rules[name]);
+          for (var i = 0; i < valResults.length; i++) {
+            var valResult = valResults[i];
+            if (!valResult.success) {
+              result.success = false;
+              var info = {};
+              result.detail[key + '.' + name + '.' + valResult.name] = valResult.message;
             }
+          }
+        } else if (isStrict) {
+          var subRules = rules['@' + name];
+          if (!subRules || typeof subRules !== 'object') {
+            result.detail[key + '.' + name + '.illegal'] = 'La proprieté n\'est pas authorisée.';
+          }
         }
-        else if (typeof inputObject === 'string') {
-            return functions;
+      }
+
+      for (let name in model) {
+        let value = model[name];
+        if (typeof value === 'object') {
+          validateModelInternal(value, rules['@' + name], result, key + '.' + name, false);
+        } else if (Object.prototype.toString.call(value) === '[object Array]') {
+          for (var i = 0; i < value.length; i++) {
+            validateModelInternal(value, rules['[]' + name], result, key + '.' + name + '[' + i + ']', false);
+          }
         }
-        else if (typeof inputObject === 'object') {
-            for (var name in inputObject) {
-                // Cas particulié de la règle customs ejecté
-                // Cas particulié de la règle customs ejecté
-                if (name === 'validateView') {
-                    functions.push({ name: name, func: inputObject.validateView });
-                    continue;
-                }
-                if (name === 'validateModel') {
-                    functions.push({ name: name, func: inputObject.validateModel });
-                    continue;
-                }
-                getFunctions(inputObject[name], functions);
-            }
-        }
-        else if (typeof inputObject === 'function') {
-            functions.push({ name: "function", func: inputObject });
-        }
-        return functions;
+      }
+      return result;
     }
-    exports.getFunctions = getFunctions;
-    // Liste toutes les fonctions d'un objet (parcour tout l'objet en recurssif)
-    // et récupère leur résultat
-    function getFunctionsResult(inputObject, results) {
-        var functions = getFunctions(inputObject);
-        if (!results) {
-            results = {};
+
+    function validateModel(model, rules, isStrict) {
+
+        if(isStrict === undefined){
+            isStrict = false;
         }
-        var l = functions.length;
-        for (var i = 0; i < l; i++) {
-            results[i.toString()] = functions.func[i]();
-        }
-        return results;
+
+      var result = { success: true, detail: {} };
+      var key = 'model';
+      validateModelInternal(model, rules, result, key, isStrict);
+      return result;
     }
-    exports.getFunctionsResult = getFunctionsResult;
+    exports.validateModel=validateModel;
 });
 define("main", ["require", "exports", "validation/validateRules", "validation/object/validateObject"], function (require, exports, validation, objectValidation) {
     "use strict";

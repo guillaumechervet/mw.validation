@@ -10,44 +10,51 @@
 <body>
 
   <script type="text/javascript">
+    /*function validateModelInternal(model, rules, result, key, isStrict) {
+      if (!rules) {
+        return result;
+      }
 
-   function validateModelInternal(model, rules, result, key){
-     if(!rules){
-       return result;
-     }
-
-      for(let name in model){
-       let value= model[name];
-        if(rules[name]){
-          let valResult = mw.validation.validateModel(value, rules[name]);
-          if(!valResult.success)
-          {
-            result.success=false;
-            result.detail[key + name]= valResult;
+      for (let name in model) {
+        let value = model[name];
+        if (rules[name]) {
+          let valResults = mw.validation.validateModel(value, rules[name]);
+          for (var i = 0; i < valResults.length; i++) {
+            var valResult = valResults[i];
+            if (!valResult.success) {
+              result.success = false;
+              var info = {};
+              result.detail[key + '.' + name + '.' + valResult.name] = valResult.message;
+            }
+          }
+        } else if (isStrict) {
+          var subRules = rules['@' + name];
+          if (!subRules || typeof subRules !== 'object') {
+            result.detail[key + '.' + name + '.illegal'] = 'La proprieté n\'est pas authorisée.';
           }
         }
       }
 
-       for(let name in model){
-          let value= model[name];
-          if(typeof value === 'object'){
-            validateModelInternal(value, rules['@'+name], result, key+'.'+name);
-          } else if( Object.prototype.toString.call( value ) === '[object Array]' ) {
-              for(var i=0;i<value.length;i++){
-                validateModelInternal(value, rules['[]'+name], result, key+'.'+name+'['+i+']');
-              }
+      for (let name in model) {
+        let value = model[name];
+        if (typeof value === 'object') {
+          validateModelInternal(value, rules['@' + name], result, key + '.' + name);
+        } else if (Object.prototype.toString.call(value) === '[object Array]') {
+          for (var i = 0; i < value.length; i++) {
+            validateModelInternal(value, rules['[]' + name], result, key + '.' + name + '[' + i + ']');
           }
-       }
+        }
+      }
       return result;
     }
 
-    function validateModel(model, rules){
+    function validateModel(model, rules, isStrict) {
 
-      var result={success:true,detail:{}};
-      var key='model';
-      validateModelInternal(model, rules, result, key);
+      var result = { success: true, detail: {} };
+      var key = 'model';
+      validateModelInternal(model, rules, result, key, isStrict);
       return result;
-    }
+    }*/
 
     (function () {
       var model = {
@@ -62,32 +69,70 @@
       };
 
       var rules = {
-        id:['required'],
+        id: ['required'],
         name: ['required'],
         author: ['required'],
         review: ['required', 'digit'],
-       '@image': {
+        '@image': {
           url: [],
-          title:[]
+          title: ['required']
         }
       };
 
-      validateModel(model, rules);
+      var result = mw.objectValidation.validateModel(model, rules);
+
+      console.log(result);
+
+      var model = {
+        id: "3",
+        name: "sd",
+        author: "Guillaume",
+        review: 3,
+        image: {
+          url: "",
+          title: ""
+        },
+        youhou: ''
+      };
+
+      var result2 = mw.objectValidation.validateModel(model, rules, true);
+
+      console.log(result2);
+
+      var onlyIf = function(){
+         if(model.image && model.image.url){
+           return true;
+         }
+         return false;
+      }
+
+        var rules3 = {
+        id: ['required'],
+        name: ['required', {minLength: { minLength: 3}}, { maxLength : { maxLength: 100}}, {pattern: { regex: /^[a-zA-Z -]*$/}} ],
+        author: ['required'],
+        review: ['required', 'digit'],
+        '@image': {
+          url: [],
+          title: [ { required: { onlyIf:onlyIf, message: 'Field Image title is required' }}]
+        }
+      };
+       var result3 = mw.objectValidation.validateModel(model, rules3, true);
+      console.log(result3);
 
     })
 
-    (function () {
-      var rules = {
-        input: [{
-          'required': {
-            message: 'New error message'
-          }
-        }]
-      };
+      (function () {
+        var rules = {
+          input: [{
+            'required': {
+              message: 'New error message'
+            }
+          }]
+        };
 
-      var result = mw.validation.validateView("toto", rules.input);
-      console.log("Assert : ", result[0].success);
-    })();
+        var result = mw.validation.validateView("toto", rules.input);
+        console.log("Assert : ", result[0].success);
+      })();
 
     (function () {
       var rules = {
