@@ -1,53 +1,48 @@
 "use strict";
-// Liste toutes les fonctions d'un objet (parcour tout l'objet en recurssif)
-function getFunctions(inputObject, functions) {
-    if (functions === void 0) { functions = undefined; }
-    if (!functions) {
-        functions = [];
+var validation = require("../validateRules");
+function validateModelInternal(model, rules, result, key, isStrict) {
+    if (!rules) {
+        return result;
     }
-    if (inputObject instanceof Array) {
-        // On recherche s'il y a un onlyIf générale sur toute les règles associées
-        for (var i = 0; i < inputObject.length; i++) {
-            var newInputObject = inputObject[i];
-            getFunctions(newInputObject, functions);
+    for (var name_1 in model) {
+        var value = model[name_1];
+        if (rules[name_1]) {
+            var valResults = validation.validateModel(value, rules[name_1]);
+            for (var i = 0; i < valResults.length; i++) {
+                var valResult = valResults[i];
+                if (!valResult.success) {
+                    result.success = false;
+                    var info = {};
+                    result.detail[key + '.' + name_1 + '.' + valResult.name] = valResult.message;
+                }
+            }
+        }
+        else if (isStrict) {
+            var subRules = rules['@' + name_1];
+            if (!subRules || typeof subRules !== 'object') {
+                result.detail[key + '.' + name_1 + '.illegal'] = 'La proprieté n\'est pas authorisée.';
+            }
         }
     }
-    else if (typeof inputObject === 'string') {
-        return functions;
-    }
-    else if (typeof inputObject === 'object') {
-        for (var name in inputObject) {
-            // Cas particulié de la règle customs ejecté
-            // Cas particulié de la règle customs ejecté
-            if (name === 'validateView') {
-                functions.push({ name: name, func: inputObject.validateView });
-                continue;
+    for (var name_2 in model) {
+        var value = model[name_2];
+        if (typeof value === 'object') {
+            validateModelInternal(value, rules['@' + name_2], result, key + '.' + name_2, false);
+        }
+        else if (Object.prototype.toString.call(value) === '[object Array]') {
+            for (var i = 0; i < value.length; i++) {
+                validateModelInternal(value, rules['[]' + name_2], result, key + '.' + name_2 + '[' + i + ']', false);
             }
-            if (name === 'validateModel') {
-                functions.push({ name: name, func: inputObject.validateModel });
-                continue;
-            }
-            getFunctions(inputObject[name], functions);
         }
     }
-    else if (typeof inputObject === 'function') {
-        functions.push({ name: "function", func: inputObject });
-    }
-    return functions;
+    return result;
 }
-exports.getFunctions = getFunctions;
-// Liste toutes les fonctions d'un objet (parcour tout l'objet en recurssif)
-// et récupère leur résultat
-function getFunctionsResult(inputObject, results) {
-    var functions = getFunctions(inputObject);
-    if (!results) {
-        results = {};
-    }
-    var l = functions.length;
-    for (var i = 0; i < l; i++) {
-        results[i.toString()] = functions.func[i]();
-    }
-    return results;
+function validateModel(model, rules, isStrict) {
+    if (isStrict === void 0) { isStrict = false; }
+    var result = { success: true, detail: {} };
+    var key = 'model';
+    validateModelInternal(model, rules, result, key, isStrict);
+    return result;
 }
-exports.getFunctionsResult = getFunctionsResult;
+exports.validateModel = validateModel;
 //# sourceMappingURL=validateObject.js.map
