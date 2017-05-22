@@ -10,51 +10,6 @@
 <body>
 
   <script type="text/javascript">
-    /*function validateModelInternal(model, rules, result, key, isStrict) {
-      if (!rules) {
-        return result;
-      }
-
-      for (let name in model) {
-        let value = model[name];
-        if (rules[name]) {
-          let valResults = mw.validation.validateModel(value, rules[name]);
-          for (var i = 0; i < valResults.length; i++) {
-            var valResult = valResults[i];
-            if (!valResult.success) {
-              result.success = false;
-              var info = {};
-              result.detail[key + '.' + name + '.' + valResult.name] = valResult.message;
-            }
-          }
-        } else if (isStrict) {
-          var subRules = rules['@' + name];
-          if (!subRules || typeof subRules !== 'object') {
-            result.detail[key + '.' + name + '.illegal'] = 'La proprieté n\'est pas authorisée.';
-          }
-        }
-      }
-
-      for (let name in model) {
-        let value = model[name];
-        if (typeof value === 'object') {
-          validateModelInternal(value, rules['@' + name], result, key + '.' + name);
-        } else if (Object.prototype.toString.call(value) === '[object Array]') {
-          for (var i = 0; i < value.length; i++) {
-            validateModelInternal(value, rules['[]' + name], result, key + '.' + name + '[' + i + ']');
-          }
-        }
-      }
-      return result;
-    }
-
-    function validateModel(model, rules, isStrict) {
-
-      var result = { success: true, detail: {} };
-      var key = 'model';
-      validateModelInternal(model, rules, result, key, isStrict);
-      return result;
-    }*/
 
     (function () {
       var model = {
@@ -74,14 +29,15 @@
         author: ['required'],
         review: ['required', 'digit'],
         '@image': {
-          url: [],
+          url: ['url'],
           title: ['required']
         }
       };
 
       var result = mw.objectValidation.validateModel(model, rules);
 
-      console.log(result);
+      console.log(JSON.stringify(result));
+      // {"success":false,"detail":{"model.image.url.url":"Veuillez saisir une url valide.","model.image.title.required":"Le champ est requis."}}
 
       var model = {
         id: "3",
@@ -97,7 +53,8 @@
 
       var result2 = mw.objectValidation.validateModel(model, rules, true);
 
-      console.log(result2);
+      console.log(JSON.stringify(result2));
+      // {"success":false,"detail":{"model.youhou.illegal":"La proprieté n'est pas authorisée.","model.image.title.required":"Le champ est requis."}}
 
       var onlyIf = function(){
          if(model.image && model.image.url){
@@ -112,12 +69,23 @@
         author: ['required'],
         review: ['required', 'digit'],
         '@image': {
-          url: [],
+          url: ['url'],
           title: [ { required: { onlyIf:onlyIf, message: 'Field Image title is required' }}]
         }
       };
        var result3 = mw.objectValidation.validateModel(model, rules3, true);
-      console.log(result3);
+      console.log(JSON.stringify(result3));
+      // {"success":false,"detail":{"model.name.minLength":"Veuillez saisir au moins 3 caractère(s).","model.youhou.illegal":"La proprieté n'est pas authorisée."}}
+
+       var model = {
+        id: "3",
+        name: "sd",
+        author: "Guillaume",
+      };
+
+       var result4 = mw.objectValidation.validateModel(model, rules3, true);
+      console.log(JSON.stringify(result4));
+      // {"success":false,"detail":{"model.name.minLength":"Veuillez saisir au moins 3 caractère(s).","model.review.notfound":"La proprieté n'est pas présente.","model.image.notfound":"La proprieté n'est pas présente."}}
 
     })
 

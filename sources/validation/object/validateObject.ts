@@ -36,6 +36,16 @@ function validateModelInternal(model, rules, result, key, isStrict) {
           }
         }
       }
+
+      // Detect non present property
+       for (let name in rules) {
+          name = name.replace('@', '');
+          var propertyValue = model[name];
+          if(propertyValue === undefined){
+             result.detail[key + '.' + name + '.notfound'] = 'La proprieté n\'est pas présente.';
+          }
+       }
+
       return result;
     }
 

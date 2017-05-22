@@ -27,6 +27,7 @@ import * as minLength from './rules/minLength';
   import * as phone from      './rules/phone';
    import * as custom from     './rules/custom';
    import * as equal from     './rules/equal';
+   import * as string from     './rules/string';
    
    rules.add(max.rule);
    rules.add(ruleRequired.rule);
@@ -51,6 +52,7 @@ rules.add(zipCode.rule);
 rules.add(phone.rule);
 rules.add(custom.rule);
 rules.add(equal.rule);
+rules.add(string.rule);
 
         function isAddRule(ruleName, validateMethodName) {
 
