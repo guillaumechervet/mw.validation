@@ -2,9 +2,6 @@ bower_components
 node_modules
 *.xproj.user
 .vs
-**/wwwroot/lib
-sources/**/*.js
-sources/**/*.map
 */.tscache
 _ReSharper.Caches
 *.lock.json
@@ -258,5 +255,4 @@ paket-files/
 
 
 # Project
-src/*.js
-src/*.map
+**/build/

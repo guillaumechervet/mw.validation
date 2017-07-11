@@ -2,27 +2,14 @@
   "name": "mw.validation",
   "version": "1.0.9",
   "private": false,
-  "main":"./build/index.js",
+  "main":"./build/src/index.js",
+  "scripts": {
+    "build" : "tsc",
+    "test" : "tsc"
+  },
   "devDependencies": {
-    "almond": "^0.3.2",
-    "grunt": "0.4.5",
-    "grunt-angular-templates": "^0.5.7",
-    "grunt-aspnet-server": "^0.3.0",
-    "grunt-bower-install": "^1.6.0",
-    "grunt-bower-task": "0.4.0",
-    "grunt-cache-control": "0.2.5",
-    "grunt-mocha-test": "^0.12.7",
-    "grunt-contrib-concat": "0.5.1",
-    "grunt-contrib-copy": "^0.8.0",
-    "grunt-contrib-cssmin": "^0.12.2",
-    "grunt-contrib-uglify": "0.9.1",
-    "grunt-contrib-watch": "0.6.1",
-    "grunt-shell": "^1.1.2",
-    "grunt-ts": "4.0.1",
-    "grunt-tslint": "^3.0.1",
     "tslint": "^3.3.0",
     "typescript": "^2.1.5",
-    "uglify-js": "2.4.20",
     "mocha": "^2.3.2"
   }
 }

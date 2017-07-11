@@ -10,11 +10,11 @@
         "sourceMap": true*/
 },
 "include": [
-        "sources/**/*"
+        "src/**/*"
     ],
 "exclude": [
   "node_modules",
-    "build",
+  "build",
   "lib",
   "bower_components",
   "wwwroot"
