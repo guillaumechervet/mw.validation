@@ -21,10 +21,12 @@ This librarie is able to validate an entire javascript Object or just properties
     - date
     - etc. //TODO
 
-# How to use it in node.js
+# How install
 
 Install it with : 
-- npm install mw.validation --save-dev
+- npm install mw.validation --save
+
+# How to use it in node.js
 
 Inside node you will use Object validation:
 
@@ -157,6 +159,26 @@ const rules = {
 
 ```
 
-# View validation samples
+# Sample of custom validation
 
-// TODO
+```
+const validatePassword = function () {
+        if (vm.user.password === vm.user.passwordConfirm) {
+            return { success: true, message: '' };
+        }
+        return { success: false, message: 'Les deux mot de passe doivent être identique.' };
+    };
+    const customPassword = {
+        custom: {
+            message: 'a default message'
+            validateView: validatePassword,
+            validateModel: validatePassword
+        }
+    };
+
+    vm.rules = {
+        password: login.rules.password,
+        passwordConfirm: ['required', customPassword],
+    };
+
+```
