@@ -2,14 +2,18 @@
   "name": "mw.validation",
   "version": "1.0.9",
   "private": false,
-  "main":"./build/src/index.js",
+  "main": "./build/src/index.js",
   "scripts": {
-    "build" : "tsc",
-    "test" : "tsc"
+    "build": "tsc",
+    "test": "mocha -r ts-node/register src/**/test.ts"
   },
   "devDependencies": {
+    "@types/chai": "^4.0.1",
+    "@types/mocha": "^2.2.41",
+    "chai": "latest",
+    "mocha": "^2.3.2",
+    "ts-node": "^3.3.0",
     "tslint": "^3.3.0",
-    "typescript": "^2.1.5",
-    "mocha": "^2.3.2"
+    "typescript": "^2.1.5"
   }
 }

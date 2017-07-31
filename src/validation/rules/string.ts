@@ -6,11 +6,9 @@ import {util} from "../util";
     var name = "string";
 
     var formatter = function (value) {
-
         if (typeof value == "undefined" || value == null) {
            return "";
         }
-
         return value.toString();
     };
 
