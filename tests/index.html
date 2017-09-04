@@ -89,18 +89,6 @@
 
     })
 
-      (function () {
-        var rules = {
-          input: [{
-            'required': {
-              message: 'New error message'
-            }
-          }]
-        };
-
-        var result = mw.validation.validateView("toto", rules.input);
-        console.log("Assert : ", result[0].success);
-      })();
 
     (function () {
       var rules = {
@@ -176,21 +164,6 @@
     })();
 
 
-    (function () {
-      var rules = {
-        input: ['color']
-      };
-
-      //#abc and #abcdef   but not #abcd
-      var result = mw.validation.validateView("#abc", rules.input);
-      console.log("Assert : ", result[0].success);
-      result = mw.validation.validateView("#abcdef", rules.input);
-      console.log("Assert : ", result[0].success);
-      result = mw.validation.validateView("#abcd", rules.input);
-      console.log("Assert : ", result[0].success);
-      result = mw.validation.validateView("abcdef", rules.input);
-      console.log("Assert : ", result[0].success);
-    })();
   </script>
 
 </body>

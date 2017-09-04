@@ -1,11 +1,11 @@
 {
   "name": "mw.validation",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "private": false,
   "main": "./build/src/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "mocha -r ts-node/register src/**/test.ts"
+    "test": "mocha -r ts-node/register src/**/*.spec.ts"
   },
   "devDependencies": {
     "@types/chai": "^4.0.1",
