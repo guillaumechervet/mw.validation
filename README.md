@@ -28,9 +28,9 @@ Install it with :
 
 # How to use it in node.js
 
-Inside node you will use Object validation:
+For server side, inside node.js you can use Object validation:
 
-```
+```javascript
 var validation = require('mw.validation');
 
 var model = {
@@ -80,7 +80,7 @@ const rules = {
 
 # Object validation samples
 
-```
+```javascript
     (function () {
       var model = {
         id: "3",
@@ -161,7 +161,9 @@ const rules = {
 
 # Sample of custom validation
 
-```
+You can define "one" custome validation rule.
+
+```javascript
 const validatePassword = function () {
         if (vm.user.password === vm.user.passwordConfirm) {
             return { success: true, message: '' };
@@ -181,4 +183,44 @@ const validatePassword = function () {
         passwordConfirm: ['required', customPassword],
     };
 
+```
+
+Your return message can be dynamically genrated.
+
+```javascript
+const getSourceRules = function (synonyme) {
+    const validate = function (value) {
+      const val = validateSupplierReference(value);
+      if (!val.success) {
+        return val;
+      }
+
+      for (let index = 0; index < vm.Synonymes.length; index++) {
+        const element = vm.Synonymes[index];
+        if (element.Source != null && value != null) {
+          if (element !== synonyme && element.Source.toLowerCase() === value.toLowerCase()) {
+            return { message: 'Un élément ne peut pas être en doublons en source.', success: false };
+          }
+        }
+      }
+
+      if (value && vm.Model.Dest && value.toLowerCase() === vm.Model.Dest.toLowerCase()) {
+        return { message: 'La source ne peut être égale à la cible.', success: false };
+      }
+      return { message: "", success: true };
+    };
+
+    const customDest = {
+      custom: {
+        validateView: validate,
+        validateModel: validate
+      }
+    };
+
+    const rules = {
+      Dest: ["required", { maxLength: 40 }, customDest]
+    };
+
+    return rules.Dest;
+  };
 ```
