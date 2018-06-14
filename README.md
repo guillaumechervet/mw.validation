@@ -26,7 +26,7 @@ This librarie is able to validate an entire javascript Object or just properties
 Install it with : 
 - npm install mw.validation --save
 
-# How to use it in node.js
+# How to use it server side (node.js)
 
 For server side, inside node.js you can use Object validation:
 
@@ -78,7 +78,7 @@ const rules = {
             }
 ```
 
-# Object validation samples
+## Object validation samples
 
 ```javascript
     (function () {
@@ -159,9 +159,13 @@ const rules = {
 
 ```
 
+# How to use it client side (browsers)
+
+// TODO
+
 # Sample of custom validation
 
-You can define "one" custome validation rule.
+You can define "one" custome validation rule :
 
 ```javascript
 const validatePassword = function () {
@@ -185,7 +189,7 @@ const validatePassword = function () {
 
 ```
 
-Your return message can be dynamically genrated.
+Your return message can be dynamically generated like bellow :
 
 ```javascript
 const getSourceRules = function (synonyme) {
@@ -224,3 +228,10 @@ const getSourceRules = function (synonyme) {
     return rules.Dest;
   };
 ```
+
+
+# Roadmap
+
+- Update documentation => Describe all rules, more internal detail
+- Plug moment or something else to internationalize date validation (date lib should be injected and not required)
+- Make API more fluent
