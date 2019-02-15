@@ -21,6 +21,7 @@ function validateModelInternal(model, rules, result, key, isStrict) {
     } else if (isStrict) {
       const subRules = rules['@' + name];
       if (!subRules || typeof subRules !== 'object') {
+        result.success = false;
         result.detail[key + '.' + name + '.illegal'] = 'La proprieté n\'est pas authorisée.';
       }
     }
