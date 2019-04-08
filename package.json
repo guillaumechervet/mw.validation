@@ -5,13 +5,9 @@
   "main": "./build/src/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "mocha -r ts-node/register src/**/*.spec.ts"
+    "test": "jest"
   },
   "devDependencies": {
-    "@types/chai": "^4.0.1",
-    "@types/mocha": "^2.2.41",
-    "chai": "latest",
-    "mocha": "^2.3.2",
     "ts-node": "^3.3.0",
     "tslint": "^3.3.0",
     "typescript": "^2.1.5"
