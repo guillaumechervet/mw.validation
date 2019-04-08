@@ -58,7 +58,7 @@ import * as textFormatter from "../i18n/textFormatter";
                 sucess = false;
             } else {
                 var modResult = ssn.value() % 97;
-                sucess = (97 - modResult).toString() == ssn.key;
+                sucess = util.formatNumberLength(97 - modResult, 2) == ssn.key;
             }
         }
 
