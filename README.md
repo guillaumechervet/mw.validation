@@ -159,10 +159,20 @@ const rules = {
 
 ```
 
-# How to use it client side (browsers)
+# View validation (generaly used at client side)
 
-// TODO
+View validation validate only one property from a list of rules.
 
+```javascript
+ var rules = {
+      input: ['color']
+    };
+
+    //#abc and #abcdef   but not #abcd
+
+    var result = validation.validateView('#abc', rules.input);
+    expect(result[0].success).to.equal(true);
+```
 # Sample of custom validation
 
 You can define "one" custome validation rule :
