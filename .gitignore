@@ -252,7 +252,3 @@ paket-files/
 .idea/
 *.sln.iml
 
-
-
-# Project
-**/build/
