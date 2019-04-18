@@ -1,7 +1,15 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "build",
-    "sourceMap": true
+    "declaration": true,
+    "declarationMap": true,
+    "jsx": "react",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false,
+    "target": "es5",
+    "lib": ["es2016", "dom"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "build", "lib", "bower_components", "wwwroot"]
