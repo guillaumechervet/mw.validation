@@ -8,8 +8,8 @@
     "test": "jest"
   },
   "devDependencies": {
-    "ts-node": "^3.3.0",
-    "tslint": "^3.3.0",
-    "typescript": "^2.1.5"
+    "ts-node": "3.3.0",
+    "tslint": "3.3.0",
+    "typescript": "2.1.5"
   }
 }
