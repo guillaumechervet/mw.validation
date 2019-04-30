@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = require("../util");
 var textFormatter = require("../i18n/textFormatter");
 var defaultMessage = 'Veuillez saisir au moins {0} caractère(s).';
@@ -41,4 +41,3 @@ var rule = {
     validateModel: validate
 };
 exports.rule = rule;
-//# sourceMappingURL=minLength.js.map

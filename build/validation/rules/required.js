@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = require("../util");
 var defaultMessage = "Le champ est requis.";
 var name = "required";
@@ -18,4 +18,3 @@ var rule = {
     priority: 1000
 };
 exports.rule = rule;
-//# sourceMappingURL=required.js.map

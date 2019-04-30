@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var format = function (format) {
     var args = [];
     for (var _i = 1; _i < arguments.length; _i++) {
@@ -17,4 +17,3 @@ function endWith(str, suffix) {
     return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
 exports.endWith = endWith;
-//# sourceMappingURL=textFormatter.js.map

@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = require("../util");
 var defaultMessage = "Les valeurs doivent être égales.";
 var name = "equal";
@@ -39,4 +39,3 @@ var rule = {
     validateModel: validate
 };
 exports.rule = rule;
-//# sourceMappingURL=equal.js.map

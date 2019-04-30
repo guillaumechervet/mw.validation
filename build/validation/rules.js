@@ -1,6 +1,6 @@
 "use strict";
 //define(['ValidationApp/validation/i18n/textFormatter'], function (textFormatter) {
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var textFormatter = require("./i18n/textFormatter");
 var rules = [];
 exports.rules = rules;
@@ -71,4 +71,3 @@ function getRule(name) {
     return null;
 }
 exports.getRule = getRule;
-//# sourceMappingURL=rules.js.map

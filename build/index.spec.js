@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var chai_1 = require("chai");
 require("mocha");
 var index_1 = require("./index");
@@ -43,4 +43,3 @@ describe('index', function () {
       });
     });*/
 });
-//# sourceMappingURL=index.spec.js.map

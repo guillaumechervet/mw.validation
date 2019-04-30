@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = require("../util");
 var defaultMessage = 'Veuillez saisir un IBAN valide.';
 var name = "iban";
@@ -64,4 +64,3 @@ var rule = {
     validateModel: validate
 };
 exports.rule = rule;
-//# sourceMappingURL=iban.js.map

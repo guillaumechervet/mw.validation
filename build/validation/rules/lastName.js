@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var firstName = require("./firstName");
 var defaultMessage = 'Le nom est invalide.';
 var name = "lastname";
@@ -12,4 +12,3 @@ var rule = {
     validateModel: validate
 };
 exports.rule = rule;
-//# sourceMappingURL=lastName.js.map

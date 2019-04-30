@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var configuration = {
     dates: {
         dateProvider: function () {
@@ -17,4 +17,3 @@ var configuration = {
 };
 exports.configuration = configuration;
 configuration.culture.setCulture(configuration.culture.defaultCulture);
-//# sourceMappingURL=configuration.js.map

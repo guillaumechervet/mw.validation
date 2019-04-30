@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var Util = /** @class */ (function () {
     function Util() {
     }
@@ -101,4 +101,3 @@ var Util = /** @class */ (function () {
 }());
 var util = new Util();
 exports.util = util;
-//# sourceMappingURL=util.js.map

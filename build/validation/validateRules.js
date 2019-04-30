@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var rules = require("./rules");
 var util_1 = require("./util");
 var max = require("./rules/max");
@@ -248,4 +248,3 @@ function firstError(validationResults) {
     return error;
 }
 exports.firstError = firstError;
-//# sourceMappingURL=validateRules.js.map

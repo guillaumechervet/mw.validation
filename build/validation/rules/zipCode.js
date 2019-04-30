@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = require("../util");
 var defaultMessage = 'Veuillez saisir un code postal valide.';
 var name = "zipCode";
@@ -86,4 +86,3 @@ var rule = {
     validateModel: validate
 };
 exports.rule = rule;
-//# sourceMappingURL=zipCode.js.map

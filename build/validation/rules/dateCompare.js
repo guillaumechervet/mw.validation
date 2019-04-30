@@ -1,6 +1,6 @@
 "use strict";
 //define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util', 'ValidationApp/validation/rules/date'], function (textFormatter, rules, util, ruleDate) {
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = require("../util");
 var textFormatter = require("../i18n/textFormatter");
 var ruleDate = require("./date");
@@ -115,4 +115,3 @@ var rule = {
     formatter: ruleDate.rule.formatter
 };
 exports.rule = rule;
-//# sourceMappingURL=dateCompare.js.map

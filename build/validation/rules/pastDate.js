@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var dateCompare = require("./dateCompare");
 var date = require("./date");
 var name = "pastDate";
@@ -20,4 +20,3 @@ var rule = {
     formatter: date.rule.formatter
 };
 exports.rule = rule;
-//# sourceMappingURL=pastDate.js.map

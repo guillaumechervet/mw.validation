@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = require("../util");
 var pattern = require("./pattern");
 var maxLength = require("./maxLength");
@@ -29,4 +29,3 @@ var rule = {
     validateModel: validateView
 };
 exports.rule = rule;
-//# sourceMappingURL=firstName.js.map

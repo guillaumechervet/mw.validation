@@ -1,6 +1,6 @@
 "use strict";
 //define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = require("../util");
 var textFormatter = require("../i18n/textFormatter");
 var defaultMessage = 'Veuillez saisir une date valide.';
@@ -89,4 +89,3 @@ var rule = {
     priority: 900
 };
 exports.rule = rule;
-//# sourceMappingURL=date.js.map

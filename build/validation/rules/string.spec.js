@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var string_1 = require("./string");
 var chai_1 = require("chai");
 require("mocha");
@@ -15,4 +15,3 @@ describe('rules;string', function () {
         chai_1.expect(result.success).to.equal(false);
     });
 });
-//# sourceMappingURL=string.spec.js.map

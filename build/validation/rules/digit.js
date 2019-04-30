@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = require("../util");
 var defaultMessage = 'Veuillez saisir un entier.';
 var name = "digit";
@@ -71,4 +71,3 @@ var rule = {
     priority: 600
 };
 exports.rule = rule;
-//# sourceMappingURL=digit.js.map

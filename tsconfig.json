@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "outDir": "build",
     "declaration": true,
     "declarationMap": true,
     "jsx": "react",

@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var digit = require("./digit");
 var name = "digits";
 var rule = {
@@ -11,4 +11,3 @@ var rule = {
     priority: 500
 };
 exports.rule = rule;
-//# sourceMappingURL=digits.js.map

@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = require("../util");
 var defaultMessage = 'Veuillez saisir une chaîne de caractères.';
 var name = "string";
@@ -63,4 +63,3 @@ var rule = {
     priority: 600
 };
 exports.rule = rule;
-//# sourceMappingURL=string.js.map

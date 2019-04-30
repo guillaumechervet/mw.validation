@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var validation = require("../validateRules");
 function validateModelInternal(model, rules, result, key, isStrict) {
     if (!rules) {
@@ -106,4 +106,3 @@ function getFunctionsResult(inputObject, results) {
     return results;
 }
 exports.getFunctionsResult = getFunctionsResult;
-//# sourceMappingURL=validateObject.js.map

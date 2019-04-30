@@ -1,6 +1,6 @@
 "use strict";
 ///define(['ValidationApp/validation/i18n/textFormatter', 'ValidationApp/validation/rules', 'ValidationApp/validation/util'], function (textFormatter, rules, util) {
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var defaultMessage = 'Une erreur de validation est survenue.';
 var name = "custom";
 /// <summary>
@@ -53,4 +53,3 @@ var rule = {
     priority: 50
 };
 exports.rule = rule;
-//# sourceMappingURL=custom.js.map
