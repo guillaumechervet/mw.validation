@@ -32,7 +32,7 @@ This librarie is able to validate an entire javascript Object or just properties
 
 ## Packages
 
-- [`mw.validation`]![npm version](https://badge.fury.io/js/mw.validation.svg)](https://badge.fury.io/js/mw.validation)
+- [`mw.validation`]![npm version][(https://badge.fury.io/js/mw.validation.svg)](https://badge.fury.io/js/mw.validation)
 
 # How to use it server side (node.js)
 
