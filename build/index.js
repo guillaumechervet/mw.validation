@@ -4,3 +4,7 @@ var validation = require("./validation/validateRules");
 exports.validation = validation;
 var objectValidation = require("./validation/object/validateObject");
 exports.objectValidation = objectValidation;
+exports.default = {
+    validation: validation,
+    objectValidation: objectValidation
+};
