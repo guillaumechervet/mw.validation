@@ -1,11 +1,21 @@
 {
   "name": "mw.validation",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "private": false,
   "main": "./build/index.js",
+  "description": "Declarative validation fully customisable that aim to normalize error message for design-systems",
   "scripts": {
     "build": "tsc",
     "test": "jest"
+  },
+  "keywords": [
+    "validation",
+    "object-validation",
+    "property-validation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guillaumechervet/mw.validation.git"
   },
   "devDependencies": {
     "ts-node": "3.3.0",

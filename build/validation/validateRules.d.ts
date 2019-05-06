@@ -1,4 +1,4 @@
-import * as rules from './rules';
+import * as rules from "./rules";
 declare function validateDependencies(ruleDefinitions: any): void;
 declare function validateView(value: any, ruleDefinition: any): any[];
 declare function validateModel(value: any, ruleDefinition: any): any[];

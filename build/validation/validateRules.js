@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var rules = require("./rules");
 var util_1 = require("./util");
+var textFormatter = require("./i18n/textFormatter");
 var max = require("./rules/max");
 var ruleRequired = require("./rules/required");
 var email = require("./rules/email");
@@ -84,11 +85,11 @@ function validateDependencies(ruleDefinitions) {
 }
 exports.validateDependencies = validateDependencies;
 function subValidateDependencies(ruleDefinition) {
-    if (typeof ruleDefinition === 'object') {
+    if (typeof ruleDefinition === "object") {
         for (var ruleName2 in ruleDefinition) {
             var ruleValue2 = ruleDefinition[ruleName2];
-            if (ruleName2 === 'dependency') {
-                if (typeof ruleValue2 === 'function') {
+            if (ruleName2 === "dependency") {
+                if (typeof ruleValue2 === "function") {
                     // on execute
                     ruleValue2();
                 }
@@ -98,29 +99,29 @@ function subValidateDependencies(ruleDefinition) {
     }
 }
 function extractRulesToExecute(rulesToExecute, ruleDefinition, validateMethodName, generalOnlyIfResult) {
-    if (typeof ruleDefinition === 'string') {
+    if (typeof ruleDefinition === "string") {
         var ruleName1 = ruleDefinition;
         if (isAddRule(ruleName1, validateMethodName)) {
             addRulesToExecute(rulesToExecute, ruleName1, null, generalOnlyIfResult);
         }
     }
-    else if (typeof ruleDefinition === 'object') {
+    else if (typeof ruleDefinition === "object") {
         for (var ruleName2 in ruleDefinition) {
             var newParams = {};
             var onlyIf = generalOnlyIfResult;
             var ruleValue2 = ruleDefinition[ruleName2];
-            if (ruleName2 === 'dependency') {
+            if (ruleName2 === "dependency") {
                 // On ne fait rien du tout
                 continue;
             }
             if (!isAddRule(ruleName2, validateMethodName)) {
                 continue;
             }
-            if (typeof ruleValue2 === 'object') {
+            if (typeof ruleValue2 === "object") {
                 for (var ruleName3 in ruleValue2) {
                     var ruleValue3 = ruleValue2[ruleName3];
-                    if (ruleName3 === 'onlyIf') {
-                        if (typeof ruleValue3 === 'function') {
+                    if (ruleName3 === "onlyIf") {
+                        if (typeof ruleValue3 === "function") {
                             if (onlyIf) {
                                 // on execute
                                 onlyIf = ruleValue3();
@@ -132,13 +133,13 @@ function extractRulesToExecute(rulesToExecute, ruleDefinition, validateMethodNam
                             }
                         }
                     }
-                    else if (ruleName3 == 'validateView' ||
-                        ruleName3 == 'validateObject' ||
-                        ruleName3 == 'validateModel') {
+                    else if (ruleName3 == "validateView" ||
+                        ruleName3 == "validateObject" ||
+                        ruleName3 == "validateModel") {
                         newParams[ruleName3] = ruleValue3;
                     }
                     else {
-                        if (typeof ruleValue3 === 'function') {
+                        if (typeof ruleValue3 === "function") {
                             // si fonction alors on exécute et on récupère le resultat
                             newParams[ruleName3] = ruleValue3();
                         }
@@ -149,7 +150,7 @@ function extractRulesToExecute(rulesToExecute, ruleDefinition, validateMethodNam
                     }
                 }
             }
-            else if (typeof ruleValue2 === 'function') {
+            else if (typeof ruleValue2 === "function") {
                 // Sis c'est une fonction
                 newParams[ruleName2] = ruleValue2();
             }
@@ -166,9 +167,9 @@ function getRulesToExecute(ruleDefinition, validateMethodName) {
     if (ruleDefinition instanceof Array) {
         // On recherche s'il y a un onlyIf générale sur toute les règles associées
         for (var i = 0; i < ruleDefinition.length; i++) {
-            var generalOnlyIf = ruleDefinition[i]['onlyIf'];
+            var generalOnlyIf = ruleDefinition[i]["onlyIf"];
             if (generalOnlyIf) {
-                if (typeof generalOnlyIf === 'function') {
+                if (typeof generalOnlyIf === "function") {
                     generalOnlyIfResult = generalOnlyIf();
                 }
                 else {
@@ -178,7 +179,7 @@ function getRulesToExecute(ruleDefinition, validateMethodName) {
         }
         for (var j = 0; j < ruleDefinition.length; j++) {
             var ruleDef = ruleDefinition[j];
-            if (ruleDef['onlyIf']) {
+            if (ruleDef["onlyIf"]) {
                 continue;
             }
             extractRulesToExecute(rulesToExecute, ruleDef, validateMethodName, generalOnlyIfResult);
@@ -208,14 +209,14 @@ function getValidationResult(ruleParams, value, validateMethodName) {
     }
     // Surcharge le message si présent dans les paramètre
     if (ruleParams.params && ruleParams.params.message) {
-        validationResult.message = ruleParams.params.message;
+        validationResult.message = textFormatter.template(ruleParams.params.message, ruleParams.params);
     }
     return validationResult;
 }
 function validate(value, ruleDefinition, validateMethodName) {
     var rulesToExecute = getRulesToExecute(ruleDefinition, validateMethodName);
     // ordonne les règles à valider par ordre de priorité
-    rulesToExecute = util_1.util.sortHashTable(rulesToExecute, 'priority', false);
+    rulesToExecute = util_1.util.sortHashTable(rulesToExecute, "priority", false);
     var validationResults = [];
     for (var i = 0; i < rulesToExecute.length; i++) {
         var ruleParams = rulesToExecute[i];
@@ -225,11 +226,11 @@ function validate(value, ruleDefinition, validateMethodName) {
     return validationResults;
 }
 function validateView(value, ruleDefinition) {
-    return validate(value, ruleDefinition, 'validateView');
+    return validate(value, ruleDefinition, "validateView");
 }
 exports.validateView = validateView;
 function validateModel(value, ruleDefinition) {
-    return validate(value, ruleDefinition, 'validateModel');
+    return validate(value, ruleDefinition, "validateModel");
 }
 exports.validateModel = validateModel;
 var add = rules.add;
