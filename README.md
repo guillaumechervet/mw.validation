@@ -65,6 +65,7 @@ const rules = {
     {
       maxLength: {
         maxLength: 100
+        message: "Expression is too long {maxLength} characters maximum"
       }
     },
     {
